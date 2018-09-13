@@ -8,9 +8,9 @@ namespace TrainingNet.Controllers
     public class HelloWorldController : Controller
     {
         [HttpGet("")]
-        public string Index()
+        public IActionResult Index()
         {
-            return "This is my default action...";
+            return View();
         }
 
         [HttpGet("Welcome/{id}")]
