@@ -9,7 +9,7 @@ using TrainingNet.Models;
 namespace TrainingNet.Controllers
 {
     
-    [Route("")]                                     // Indicates that Home will be /
+    [Route("")]
     public class HomeController : Controller
     {
         [HttpGet("")]
