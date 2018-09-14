@@ -3,7 +3,6 @@ using System.Text.Encodings.Web;
 
 namespace TrainingNet.Controllers
 {
-
     [Route("[controller]")]
     public class HelloWorldController : Controller
     {
@@ -11,7 +10,7 @@ namespace TrainingNet.Controllers
         public IActionResult Index()
         {
 
-            ViewData["Title"]="HelloWorld";
+            ViewData["Title"]="Index";
             ViewData["Message"]="Hello from our View Template for TrainingNet!";
             return View();
         }

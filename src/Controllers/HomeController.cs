@@ -8,7 +8,6 @@ using TrainingNet.Models;
 
 namespace TrainingNet.Controllers
 {
-    
     [Route("")]
     public class HomeController : Controller
     {
