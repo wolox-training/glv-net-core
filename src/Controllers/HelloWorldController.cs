@@ -10,6 +10,9 @@ namespace TrainingNet.Controllers
         [HttpGet("")]
         public IActionResult Index()
         {
+
+            ViewData["Title"]="HelloWorld";
+            ViewData["Message"]="Hello from our View Template for TrainingNet!";
             return View();
         }
 
