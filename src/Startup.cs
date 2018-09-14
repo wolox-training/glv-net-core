@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace TrainingNet
 {
@@ -29,9 +30,13 @@ namespace TrainingNet
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
+                
             });
-
-
+            
+           services.AddSwaggerGen(c =>
+           {
+               c.SwaggerDoc("v1", new Info { Title = "Training NET API", Version = "v1" });
+           });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -51,13 +56,13 @@ namespace TrainingNet
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
-            app.UseMvc(routes =>
+            app.UseMvc();
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
             {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "TrainingNet");
             });
+            
         }
     }
 }
