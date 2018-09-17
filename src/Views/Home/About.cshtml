@@ -1,10 +1,12 @@
-﻿@using Microsoft.AspNetCore.Mvc.Localization
+﻿@using Microsoft.AspNetCore.Mvc.Localization;
 @using System.Globalization;
 @inject IViewLocalizer Localizer
-@{
-    ViewData["Title"] = "About";
-}
-<h2>@ViewData["Title"]</h2>
-<h3>@ViewData["Message"]</h3>
 
+@{
+    ViewData["Title"] = Localizer["AboutPage"];
+}
+
+<h2>@ViewData["Title"]</h2>
+<h4>@ViewData["Message"]</h4>
+<h4>@Localizer["GenericMessaje"]</h4>
 <p>Use this area to provide additional information.</p>

@@ -19,7 +19,7 @@ namespace TrainingNet.Controllers
         public IActionResult Index()
         {
             ViewData["Title"]="Index";
-            ViewData["Message"] = _localizer["HomePage"];
+            ViewData["Message"] = _localizer["HomePage"].Value;
             return View();
         }
 

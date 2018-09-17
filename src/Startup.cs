@@ -38,7 +38,8 @@ namespace TrainingNet
             services.AddMvc();
             services.AddJsonLocalization(options => options.ResourcesPath = "Resources");
             services.AddMvc().AddViewLocalization();
-            CultureInfo.CurrentCulture = new CultureInfo("es-MX");
+            CultureInfo.CurrentCulture = new CultureInfo("es-ES");
+            CultureInfo.CurrentUICulture = new CultureInfo("es-ES");
             services.AddDbContext<DataBaseContext>(options =>  options.UseNpgsql(Configuration["ConnectionString"]));
             services.AddScoped<DataBaseContext>(); 
             services.AddSwaggerGen(c =>

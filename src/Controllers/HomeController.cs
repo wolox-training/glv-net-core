@@ -17,30 +17,29 @@ namespace TrainingNet.Controllers
 
         [HttpGet("")]
         public IActionResult Index()
-        {
-            
-            ViewData["Message"] = _localizer["HomePage"];
+        {         
+            ViewData["Message"] = _localizer["HomePage"].Value;
             return View();
         }
 
         [HttpGet("About")]
         public IActionResult About()
         {
-            ViewData["Message"] = _localizer["AboutPage"];
+            ViewData["Message"] = _localizer["AboutPage"].Value;
             return View();
         }
 
         [HttpGet("Contact")]
         public IActionResult Contact()
         {
-            ViewData["Message"] = _localizer["ContactPage"];
+            ViewData["Message"] = _localizer["ContactPage"].Value;
             return View();
         }
 
         [HttpGet("Privacy")]
         public IActionResult Privacy()
         {
-            ViewData["Message"] = _localizer["PrivacityPage"];
+            ViewData["Message"] = _localizer["PrivacityPage"].Value;
             return View();
         }
 
