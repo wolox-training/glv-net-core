@@ -3,14 +3,16 @@ using System.Text.Encodings.Web;
 
 namespace TrainingNet.Controllers
 {
-
     [Route("[controller]")]
     public class HelloWorldController : Controller
     {
         [HttpGet("")]
-        public string Index()
+        public IActionResult Index()
         {
-            return "This is my default action...";
+
+            ViewData["Title"]="Index";
+            ViewData["Message"]="Hello from our View Template for TrainingNet!";
+            return View();
         }
 
         [HttpGet("Welcome/{id}")]
