@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
+using TrainingNet.Repositories.Database;
 
 namespace TrainingNet
 {
@@ -32,11 +34,13 @@ namespace TrainingNet
                 options.MinimumSameSitePolicy = SameSiteMode.None;
                 
             });
-            
-           services.AddSwaggerGen(c =>
-           {
+            services.AddMvc();
+            services.AddDbContext<DataBaseContext>(options =>  options.UseNpgsql(Configuration["ConnectionString"]));
+            services.AddScoped<DataBaseContext>(); 
+            services.AddSwaggerGen(c =>
+            {
                c.SwaggerDoc("v1", new Info { Title = "Training NET API", Version = "v1" });
-           });
+            });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
