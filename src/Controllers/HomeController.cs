@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Localization;
 using TrainingNet.Models;
 
 namespace TrainingNet.Controllers
@@ -11,30 +8,41 @@ namespace TrainingNet.Controllers
     [Route("")]
     public class HomeController : Controller
     {
+        private readonly IHtmlLocalizer<HomeController> _localizer;
+
+        public HomeController(IHtmlLocalizer<HomeController> localizer)
+        {
+            this._localizer = localizer;
+        }
+
         [HttpGet("")]
         public IActionResult Index()
-        {
+        {         
+            ViewData["Message"] = _localizer["HomePage"].Value;
             return View();
         }
+
         [HttpGet("About")]
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
-
+            ViewData["Message"] = _localizer["AboutPage"].Value;
             return View();
         }
+
         [HttpGet("Contact")]
         public IActionResult Contact()
         {
-            ViewData["Message"] = "Your contact page.";
-
+            ViewData["Message"] = _localizer["ContactPage"].Value;
             return View();
         }
+
         [HttpGet("Privacy")]
         public IActionResult Privacy()
         {
+            ViewData["Message"] = _localizer["PrivacityPage"].Value;
             return View();
         }
+
         [HttpGet("Error")]
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
