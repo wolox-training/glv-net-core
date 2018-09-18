@@ -10,16 +10,21 @@ namespace TrainingNet.Controllers
     {
         private readonly IHtmlLocalizer<HelloWorldController> _localizer;
         
+        public IHtmlLocalizer<HelloWorldController> Localizer
+            {
+                get {return this._localizer;}
+            }
+        
         public HelloWorldController(IHtmlLocalizer<HelloWorldController> localizer)
         {
             this._localizer = localizer;
         }
-        
+
         [HttpGet("")]
         public IActionResult Index()
         {
-            ViewData["Title"]="Index";
-            ViewData["Message"] = _localizer["HomePage"].Value;
+            ViewData["Title"] = "Index";
+            ViewData["Message"] = Localizer["HomePage"].Value;
             return View();
         }
 
