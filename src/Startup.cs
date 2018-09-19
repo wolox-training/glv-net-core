@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
 using TrainingNet.Repositories.Database;
+using TrainingNet.Repositories.Interfaces;
 
 namespace TrainingNet
 {
@@ -40,6 +41,7 @@ namespace TrainingNet
             services.AddMvc().AddViewLocalization();
             CultureInfo.CurrentCulture = new CultureInfo("es-ES");
             CultureInfo.CurrentUICulture = new CultureInfo("es-ES");
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddDbContext<DataBaseContext>(options =>  options.UseNpgsql(Configuration["ConnectionString"]));
             services.AddScoped<DataBaseContext>(); 
             services.AddSwaggerGen(c =>
