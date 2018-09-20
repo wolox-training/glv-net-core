@@ -10,9 +10,9 @@ namespace TrainingNet.Controllers
         private readonly IHtmlLocalizer<HelloWorldController> _localizer;
         
         public IHtmlLocalizer<HelloWorldController> Localizer
-            {
-                get {return this._localizer;}
-            }
+        {
+            get {return this._localizer;}
+        }
         
         public HelloWorldController(IHtmlLocalizer<HelloWorldController> localizer)
         {

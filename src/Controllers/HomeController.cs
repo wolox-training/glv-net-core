@@ -10,6 +10,11 @@ namespace TrainingNet.Controllers
     {
         private readonly IHtmlLocalizer<HomeController> _localizer;
 
+        public IHtmlLocalizer<HomeController> Localizer
+        {
+            get {return this._localizer;}
+        }
+
         public HomeController(IHtmlLocalizer<HomeController> localizer)
         {
             this._localizer = localizer;
@@ -17,29 +22,29 @@ namespace TrainingNet.Controllers
 
         [HttpGet("")]
         public IActionResult Index()
-        {         
-            ViewData["Message"] = _localizer["HomePage"].Value;
+        {
+            ViewData["Message"] = Localizer["HomePage"].Value; 
             return View();
         }
 
         [HttpGet("About")]
         public IActionResult About()
         {
-            ViewData["Message"] = _localizer["AboutPage"].Value;
+            ViewData["Message"] = Localizer["AboutPage"].Value;
             return View();
         }
 
         [HttpGet("Contact")]
         public IActionResult Contact()
         {
-            ViewData["Message"] = _localizer["ContactPage"].Value;
+            ViewData["Message"] = Localizer["ContactPage"].Value;
             return View();
         }
 
         [HttpGet("Privacy")]
         public IActionResult Privacy()
         {
-            ViewData["Message"] = _localizer["PrivacityPage"].Value;
+            ViewData["Message"] = Localizer["PrivacyPage"].Value;
             return View();
         }
 
