@@ -2,44 +2,46 @@ using Microsoft.AspNetCore.Mvc;
 using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Mvc.Localization;
 using TrainingNet.Repositories.Interfaces;
+using TrainingNet.Models.Views;
+using TrainingNet.Models;
 
 namespace TrainingNet.Controllers
 {
     [Route("[controller]")]
     public class MovieController : Controller
     {
-        private readonly IHtmlLocalizer<MovieController> _localizer;
         private readonly IUnitOfWork _unitOfWork;
         
-        public IHtmlLocalizer<MovieController> Localizer
-        {
-            get {return this._localizer;}
-        }
-        
-        public MovieController(IHtmlLocalizer<MovieController> localizer)
-        {
-            this._localizer = localizer;
-        }
-
         public MovieController(IUnitOfWork unitOfWork)
         {
             this._unitOfWork = unitOfWork;
         }
 
-        public IUnitOfWork UnitOfWork
+        private IUnitOfWork UnitOfWork
         {
             get { return this._unitOfWork; }
         }
 
         [HttpGet("Create")]
-        public IActionResult Index()
+        public IActionResult Create()
         {
             return View();
         }
 
-        [HttpGet("Create")]
-        public IActionResult Create()
+        [HttpPost("Create")]
+        public IActionResult Create(MovieViewModel movieVM)
         {
+            if (ModelState.IsValid)
+            {
+                var movie = new Movie();
+                movie.Title = movieVM.Title;
+                movie.ReleaseDate = movieVM.ReleaseDate;
+                movie.Genre = movieVM.Genre;
+                movie.Price = movieVM.Price;
+                _unitOfWork.MovieRepository.Add(movie);
+                _unitOfWork.Complete();
+                return View("Index");
+            }
             return View();
         }
     }

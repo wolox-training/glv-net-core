@@ -4,5 +4,14 @@
     "PrivacyPage": "Pagina de Privacidad.",
     "ContactPage": "Page de contact.",
     "HomePage": "Page d'accueil.",
-    "GenericMessage": "Utilisez cette zone pour fournir des informations supplémentaires."
+    "GenericMessage": "Utilisez cette zone pour fournir des informations supplémentaires.",
+    "Movie": "Film",
+    "Title":"Title",
+    "ReleaseDate":"Date de sortie",
+    "Genre":"Genre",
+    "Price":"Prix",
+    "Register":"Registre",
+    "Cancel":"Annuler",
+    "Agree":"Accepter"
+
 }

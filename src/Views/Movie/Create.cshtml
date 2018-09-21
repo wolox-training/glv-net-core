@@ -4,102 +4,43 @@
 @model TrainingNet.Models.Views.MovieViewModel
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = Localizer["Movie"];
 }
 
-@using (Html.BeginForm("Register","Account",FormMethod.Post,
-                                        new { @class = "form-horizontal" }))
-
+@using (Html.BeginForm("Create","Movie",FormMethod.Post, new { @class = "form-horizontal" }))
 {  
     @Html.AntiForgeryToken()
-    <h4>Create Movie</h4>
+    <br>
+    <h4>@Localizer["Movie"]</h4>
     <hr/>
         @Html.ValidationSummary("", new { @class = "text-danger" })
         <div class = "form-group">
-            @Html.LabelFor(m => m.Title, new { @class = "col-md-2 control-label" })
+            @Html.Label("Title",Localizer["Movie"].Value, new { @class = "col-md-2 control-label" })
             <div class = "col-md-10">
                 @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
             </div>
         </div>
         <div class = "form-group">
-            @Html.LabelFor(m => m.ReleaseDate, new { @class = "col-md-2 control-label" })
+            @Html.Label("ReleaseDate",Localizer["ReleaseDate"].Value, new { @class = "col-md-2 control-label" })
             <div class = "col-md-10">
                 @Html.TextBoxFor(m => m.ReleaseDate, new { @class = "form-control" })
             </div>
         </div>
         <div class = "form-group">
-            @Html.LabelFor(m => m.Genre, new { @class = "col-md-2 control-label" })
+            @Html.Label("Genre",Localizer["Genre"].Value, new { @class = "col-md-2 control-label" })
             <div class = "col-md-10">
                 @Html.TextBoxFor(m => m.Genre, new { @class = "form-control" })
             </div>
         </div>
         <div class = "form-group">
-            @Html.LabelFor(m => m.Price, new { @class = "col-md-2 control-label" })
+            @Html.Label("Price",Localizer["Price"].Value, new { @class = "col-md-2 control-label" })
             <div class = "col-md-10">
                 @Html.TextBoxFor(m => m.Price, new { @class = "form-control" })
             </div>
         </div>
         <div class = "form-group">
             <div class = "col-md-10">
-                <input type = "submit" class = "btn btn-default" value = "Registrar"/>
+                <input type = "submit" class = "btn btn-default" value = @Localizer["Register"].Value />
         </div>
     </div>
 }
-{
-
-<h2>Edit</h2>
-
-<form asp-action="Edit">
-    <div class="form-horizontal">
-        <h4>Movie</h4>
-        <hr />
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <input type="hidden" asp-for="ID" />
-        <div class="form-group">
-            <label asp-for="Title" class="col-md-2 control-label"></label>      /*Title*/
-            <div class="col-md-10">
-                <input asp-for="Title" class="form-control" />                  /*Title*/
-                <span asp-validation-for="Title" class="text-danger"></span>    /*Title*/
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="ReleaseDate" class="col-md-2 control-label"></label>    /*ReleaseDate*/
-            <div class="col-md-10">
-                <input asp-for="ReleaseDate" class="form-control" />                /*ReleaseDate*/
-                <span asp-validation-for="ReleaseDate" class="text-danger"></span>  /*ReleaseDate*/
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Genre" class="col-md-2 control-label"></label>          /*Genre*/
-            <div class="col-md-10">
-                <input asp-for="Genre" class="form-control" />                      /*Genre*/
-                <span asp-validation-for="Genre" class="text-danger"></span>        /*Genre*/
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Price" class="col-md-2 control-label"></label>          /*Price*/
-            <div class="col-md-10">
-                <input asp-for="Price" class="form-control" />                      /*Price*/
-                <span asp-validation-for="Price" class="text-danger"></span>        /*Price*/
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-</form>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-}
-
-
-
-
-
-
-

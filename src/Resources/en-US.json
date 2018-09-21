@@ -4,5 +4,13 @@
     "PrivacyPage": "Privacity page.",
     "ContactPage": "Your contact page.",
     "HomePage": "Home Page.",
-    "GenericMessage": "Use this area to provide additional information."
+    "GenericMessage": "Use this area to provide additional information.",
+    "Movie": "Movie",
+    "Title":"Title",
+    "ReleaseDate":"ReleaseDate",
+    "Genre":"Genre",
+    "Price":"Price",
+    "Register":"Register",
+    "Cancel":"Cancel",
+    "Agree":"Agree"
 }
