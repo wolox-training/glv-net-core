@@ -47,6 +47,11 @@ namespace TrainingNet.Repositories
             Context.Set<TEntity>().AddRange(entities);
         }
 
+        public void Update(TEntity entity)
+        {
+            Context.Set<TEntity>().Update(entity);
+        }
+        
         public void Remove(TEntity entity)
         {
             Context.Set<TEntity>().Remove(entity);
