@@ -14,7 +14,7 @@ namespace TrainingNet.Repositories.Database
             MovieRepository = new MovieRepository(_context);
         }
 
-        public MovieRepository MovieRepository { get; private set; }
+        public IMovieRepository MovieRepository { get; private set; }
 
         public int Complete()
         {
