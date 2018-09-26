@@ -10,7 +10,7 @@ namespace TrainingNet.Repositories.Database
 
         public UnitOfWork(DataBaseContext context)
         {
-            _context = context;
+            this._context = context;
             MovieRepository = new MovieRepository(_context);
         }
 
