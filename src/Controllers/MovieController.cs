@@ -40,7 +40,7 @@ namespace TrainingNet.Controllers
                     Genre = m.Genre,
                     Price = m.Price,
                 }).ToList();
-                return View(moviesVLM);
+                return View(moviesVM);
             }
             catch (NullReferenceException)
             {
