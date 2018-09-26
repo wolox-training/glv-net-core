@@ -12,7 +12,7 @@ namespace TrainingNet.Controllers
 
         public IHtmlLocalizer<HomeController> Localizer
         {
-            get {return this._localizer;}
+            get => this._localizer;
         }
 
         public HomeController(IHtmlLocalizer<HomeController> localizer)
