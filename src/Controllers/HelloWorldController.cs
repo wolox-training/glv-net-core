@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Mvc.Localization;
-
 namespace TrainingNet.Controllers
 {
     [Route("[controller]")]
