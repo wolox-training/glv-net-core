@@ -1,13 +1,9 @@
-﻿@*@using Microsoft.AspNetCore.Mvc.Localization
+﻿@using Microsoft.AspNetCore.Mvc.Localization
 @using System.Globalization;
+@using System.Collections.Generic
+@using TrainingNet.Models.Views
 @inject IViewLocalizer Localizer
-@model System.Collections.Generic.IEnumerable<TrainingNet.Models.Views.MovieViewModel>
-@model System.Collections.Generic<TrainingNet.Models.Views.MovieListViewModel>
-
-*@
-<h1>xxxx</h1>
-@*
-
+@model IEnumerable<MovieViewModel>
 @{
     ViewData["Title"] = Localizer["Movie"];
 }
@@ -41,7 +37,7 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(item => item.Title)
+                    @Html.DisplayFor(modelItem => item.Title)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Genre)
@@ -59,4 +55,3 @@
         }
     </tbody>
 </table>
-*@

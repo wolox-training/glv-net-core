@@ -8,7 +8,7 @@
 {  
     @Html.AntiForgeryToken()
     <br>
-    <h4>@Localizer["Movie"]</h4>
+    <h2>@Localizer["Movie"]</h2>
     <hr/>
         @Html.ValidationSummary("", new { @class = "text-danger" })
         <div class = "form-group">
