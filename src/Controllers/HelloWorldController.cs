@@ -1,17 +1,28 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Encodings.Web;
-
+using Microsoft.AspNetCore.Mvc.Localization;
 namespace TrainingNet.Controllers
 {
     [Route("[controller]")]
     public class HelloWorldController : Controller
     {
+        private readonly IHtmlLocalizer<HelloWorldController> _localizer;
+        
+        private IHtmlLocalizer<HelloWorldController> Localizer
+        {
+            get => this._localizer;
+        }
+
+        public HelloWorldController(IHtmlLocalizer<HelloWorldController> localizer)
+        {
+            this._localizer = localizer;
+        }
+
         [HttpGet("")]
         public IActionResult Index()
         {
-
-            ViewData["Title"]="Index";
-            ViewData["Message"]="Hello from our View Template for TrainingNet!";
+            ViewData["Title"] = "Index";
+            ViewData["Message"] = Localizer["HomePage"].Value;            
             return View();
         }
 
