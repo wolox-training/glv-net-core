@@ -51,18 +51,20 @@ namespace TrainingNet.Controllers
         {
             try 
             {
-                var movie = new Movie();
-                MovieViewModel movieVM = new MovieViewModel();
+                
                 if (id == null)
                     throw new NullReferenceException();
-                movie = _unitOfWork.MovieRepository.Get(id.Value);
+                var movie = UnitOfWork.MovieRepository.Get(id.Value);
                 if (movie == null)
                     throw new NullReferenceException();
-                movieVM.Id = movie.Id;
-                movieVM.Title = movie.Title;
-                movieVM.ReleaseDate = movie.ReleaseDate;
-                movieVM.Genre = movie.Genre;
-                movieVM.Price = movie.Price;
+                MovieViewModel movieVM = new MovieViewModel
+                {
+                    Id = movie.Id,
+                    Title = movie.Title,
+                    ReleaseDate = movie.ReleaseDate,
+                    Genre = movie.Genre,
+                    Price = movie.Price,
+                };
                 return View(movieVM);
             }
             catch (NullReferenceException) 
@@ -78,15 +80,17 @@ namespace TrainingNet.Controllers
             {
                 if (!ModelState.IsValid)
                     throw new NullReferenceException();
-                var movie = new Movie();
-                movie.Id = movieVM.Id;
-                movie.Title = movieVM.Title;
-                movie.ReleaseDate = movieVM.ReleaseDate;
-                movie.Genre = movieVM.Genre;
-                movie.Price = movieVM.Price;
-                _unitOfWork.MovieRepository.Update(movie);
-                _unitOfWork.Complete();
-                return View("Index");
+                var movie = new Movie 
+                {
+                    Id = movieVM.Id,
+                    Title = movieVM.Title,
+                    ReleaseDate = movieVM.ReleaseDate,
+                    Genre = movieVM.Genre,
+                    Price = movieVM.Price,
+                };
+                UnitOfWork.MovieRepository.Update(movie);
+                UnitOfWork.Complete();
+                return RedirectToAction("Index", "Home");
             }
             catch(NullReferenceException)
             {
