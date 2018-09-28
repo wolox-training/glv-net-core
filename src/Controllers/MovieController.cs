@@ -33,14 +33,16 @@ namespace TrainingNet.Controllers
         {
             if (ModelState.IsValid)
             {
-                var movie = new Movie();
-                movie.Title = movieVM.Title;
-                movie.ReleaseDate = movieVM.ReleaseDate;
-                movie.Genre = movieVM.Genre;
-                movie.Price = movieVM.Price;
-                _unitOfWork.MovieRepository.Add(movie);
-                _unitOfWork.Complete();
-                return View("Index");
+                var movie = new Movie 
+                {
+                    Title = movieVM.Title,
+                    ReleaseDate = movieVM.ReleaseDate,
+                    Genre = movieVM.Genre,
+                    Price = movieVM.Price,
+                };
+                UnitOfWork.MovieRepository.Add(movie);
+                UnitOfWork.Complete();
+                return RedirectToAction("Create");
             }
             return View();
         }
