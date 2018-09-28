@@ -42,7 +42,7 @@ namespace TrainingNet.Controllers
                 };
                 UnitOfWork.MovieRepository.Add(movie);
                 UnitOfWork.Complete();
-                return RedirectToAction("Create");
+                return RedirectToAction("Index", "Home");
             }
             return View();
         }
