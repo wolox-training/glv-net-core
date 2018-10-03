@@ -51,7 +51,6 @@ namespace TrainingNet.Controllers
         {
             try 
             {
-                
                 if (id == null)
                     throw new NullReferenceException();
                 var movie = UnitOfWork.MovieRepository.Get(id.Value);
