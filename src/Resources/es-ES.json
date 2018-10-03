@@ -17,5 +17,8 @@
     "Edit":"Modificar",
     "Create":"Crear",
     "View":"Ver",
-    "Options":"Opciones"
+    "Options":"Opciones",
+    "Delete":"Borrar",
+    "Details":"Detalles",
+    "Return":"Volver"
 }
