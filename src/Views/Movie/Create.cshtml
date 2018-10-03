@@ -1,6 +1,5 @@
 @using Microsoft.AspNetCore.Mvc.Localization
 @using System.Globalization;
-
 @inject IViewLocalizer Localizer
 @model TrainingNet.Models.Views.MovieViewModel
 
@@ -8,7 +7,7 @@
     ViewData["Title"] = Localizer["Movie"];
 }
 
-@using (Html.BeginForm("Create","Movie",FormMethod.Post, new { @class = "form-horizontal" }))
+@using (Html.BeginForm("Create", "Movie", FormMethod.Post, new { @class = "form-horizontal" }))
 {  
     @Html.AntiForgeryToken()
     <br>
@@ -16,25 +15,25 @@
     <hr/>
         @Html.ValidationSummary("", new { @class = "text-danger" })
         <div class = "form-group">
-            @Html.Label("Title",Localizer["Movie"].Value, new { @class = "col-md-2 control-label" })
+            @Html.Label("Title", Localizer["Movie"].Value, new { @class = "col-md-2 control-label" })
             <div class = "col-md-10">
                 @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
             </div>
         </div>
         <div class = "form-group">
-            @Html.Label("ReleaseDate",Localizer["ReleaseDate"].Value, new { @class = "col-md-2 control-label" })
+            @Html.Label("ReleaseDate", Localizer["ReleaseDate"].Value, new { @class = "col-md-2 control-label" })
             <div class = "col-md-10">
                 @Html.TextBoxFor(m => m.ReleaseDate, new { @class = "form-control" })
             </div>
         </div>
         <div class = "form-group">
-            @Html.Label("Genre",Localizer["Genre"].Value, new { @class = "col-md-2 control-label" })
+            @Html.Label("Genre", Localizer["Genre"].Value, new { @class = "col-md-2 control-label" })
             <div class = "col-md-10">
                 @Html.TextBoxFor(m => m.Genre, new { @class = "form-control" })
             </div>
         </div>
         <div class = "form-group">
-            @Html.Label("Price",Localizer["Price"].Value, new { @class = "col-md-2 control-label" })
+            @Html.Label("Price", Localizer["Price"].Value, new { @class = "col-md-2 control-label" })
             <div class = "col-md-10">
                 @Html.TextBoxFor(m => m.Price, new { @class = "form-control" })
             </div>
