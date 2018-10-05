@@ -1,0 +1,35 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@using TrainingNet.Models.Views
+@using System.Globalization;
+
+@inject IViewLocalizer Localizer
+@model RegisterViewModel
+
+<h1>@Localizer["Register"]</h1>
+@using (Html.BeginForm("Register", "Account", FormMethod.Post))
+{
+    <div asp-validation-summary="All"></div>
+    <div class='form-group'>
+        <label class="control-label col-md-2">@(Localizer["UserName"])</label>
+        @Html.EditorFor(model => model.UserName)
+        @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger"})
+    </div>
+    <div class='form-group'>
+        <label class="control-label col-md-2">@(Localizer["Email"])</label>
+        @Html.EditorFor(model => model.Email)
+        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger"})
+    </div>
+    <div class='form-group'>
+        <label class="control-label col-md-2">@(Localizer["Password"])</label>
+        @Html.EditorFor(model => model.Password)
+        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger"})
+    </div>
+    <div class='form-group'>
+        <label class="control-label col-md-2">@(Localizer["ConfirmPassword"])</label>
+        @Html.EditorFor(model => model.ConfirmPassword)
+        @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger"})
+    </div>
+    <div>
+        <input type ="submit" class="btn btn-default" value=@Localizer["Register"] />
+    </div>
+}

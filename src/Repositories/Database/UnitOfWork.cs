@@ -1,4 +1,5 @@
 
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using TrainingNet.Repositories.Interfaces;
 
 namespace TrainingNet.Repositories.Database
@@ -12,9 +13,10 @@ namespace TrainingNet.Repositories.Database
         {
             this._context = context;
             MovieRepository = new MovieRepository(_context);
+            ApplicationUserRepository = new ApplicationUserRepository(_context);
         }
-
         public IMovieRepository MovieRepository { get; private set; }
+        public IApplicationUserRepository ApplicationUserRepository { get; private set; }
 
         public int Complete()
         {

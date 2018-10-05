@@ -38,6 +38,11 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
                     <li><a asp-area="" asp-controller="Movie" asp-action="Index">@(Localizer["View"].Value) @(Localizer["Movies"].Value)</a></li>
+                    @await Html.PartialAsync("_LoginPartial")
+                    
+                    <li><a asp-area="" asp-controller="Account" asp-action="Login">@(Localizer["LogIn"].Value)</a></li>
+                    <li><a asp-area="" asp-controller="Account" asp-action="Register">@(Localizer["SigIn"].Value)</a></li>
+                    <li><a asp-area="" asp-controller="UserManagement" asp-action="Users">@(Localizer["Profiles"].Value)</a></li>
                 </ul>
             </div>
         </div>
