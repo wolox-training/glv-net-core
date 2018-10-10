@@ -7,7 +7,7 @@ namespace TrainingNet.Models.Views
   public class MovieGenreViewModel
     {
         public List<MovieViewModel> MoviesList;
-        public SelectListItem GenresList;
+        public SelectList GenresList;
         public string MovieGenre { get; set; }
     }
 }
