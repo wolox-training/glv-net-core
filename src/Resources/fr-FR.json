@@ -31,5 +31,6 @@
     "ConfirmPassword": "Changer le mot de passe",
     "AccessDenied": "Accès refusé",
     "UserName": "Nom d'utilisateur",
-    "Welcome":"Bienvenue"
+    "Welcome":"Bienvenue",
+    "Users":"Utilisateurs"
 }

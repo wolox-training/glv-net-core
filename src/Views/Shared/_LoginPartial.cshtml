@@ -12,14 +12,11 @@
 {
   <li><a asp-area="" asp-controller="Movie" asp-action="Index">@(Localizer["Welcome"].Value) @(User.Identity.Name)</a></li>
   <li><a asp-area="" asp-controller="Account" asp-action="Logout">@(Localizer["LogOut"])</a></li>
-  <li><a asp-area="" asp-controller="Movie" asp-action="Index">@(Localizer["View"].Value) @(Localizer["Movies"].Value)</a></li>
-  <li><a asp-area="" asp-controller="UserManagement" asp-action="Users">@(Localizer["Profiles"].Value)</a></li>
-//@using (Html.BeginForm("@ViewData[\"FormAction\"].Value","Movie",FormMethod.Post, new { @class = "form-horizontal" }))
-
-//@Html.ActionLink($"{Localizer["Welcome"].Value} {UserManager.GetUserName(User)}!", "Users", "UserManagement")
+  <li><a asp-area="" asp-controller="Movie" asp-action="Index">@(Localizer["Movies"].Value)</a></li>
+  <li><a asp-area="" asp-controller="UserManagement" asp-action="Users">@(Localizer["Users"].Value)</a></li>
 }
 else
 {
-  <li><a asp-area="" asp-controller="Account" asp-action="Register">@(Localizer["Register"])</a></li>
-  <li><a asp-area="" asp-controller="Account" asp-action="Login">@(Localizer["LogIn"])</a></li>
+  <li>@Html.ActionLink(Localizer["Register"].Value,"Register","Account",null)</li>
+  <li>@Html.ActionLink(Localizer["LogIn"].Value,"Login","Account",null)</li>
 }

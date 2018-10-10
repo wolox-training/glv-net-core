@@ -1,0 +1,42 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@using System.Globalization;
+@using System.Collections.Generic
+@using TrainingNet.Models.Views
+@inject IViewLocalizer Localizer
+@model IEnumerable<UserViewModel>
+@{
+    ViewData["Title"] = Localizer["Profiles"];
+}
+
+<h2>@Localizer["Users"]</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(m => m.UserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Email)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) 
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -5,6 +5,7 @@ using TrainingNet.Models;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TrainingNet.Controllers
 {
@@ -23,7 +24,7 @@ namespace TrainingNet.Controllers
             get { return this._unitOfWork; }
         }
 
-        [HttpGet("")]
+        [HttpGet(""), Authorize]
         public IActionResult Index()
         {
             try

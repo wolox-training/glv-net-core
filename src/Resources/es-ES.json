@@ -31,5 +31,6 @@
     "ConfirmPassword": "Repetir contraseña",
     "AccessDenied": "Acceso denegado",
     "UserName": "Nombre de usuario",
-    "Welcome":"Bienvenido"
+    "Welcome":"Bienvenido",
+    "Users":"Usuarios"
 }

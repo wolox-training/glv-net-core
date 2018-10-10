@@ -4,4 +4,3 @@ namespace TrainingNet.Models
 {
     public class ApplicationUser : IdentityUser {}
 }
-

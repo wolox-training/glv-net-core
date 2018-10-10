@@ -31,5 +31,6 @@
     "ConfirmPassword": "Confirmez le mot de passe",
     "AccessDenied": "Access denied",
     "UserName": "User Name",
-    "Welcome":"Welcome"
+    "Welcome":"Welcome",
+    "Users":"Users"
 }
