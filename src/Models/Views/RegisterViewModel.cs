@@ -4,10 +4,10 @@ namespace TrainingNet.Models.Views
 {
     public class RegisterViewModel
     {
-        [Required]
+        [Required, MaxLength(20)]
         public string UserName { get; set; }
 
-        [Required, Display(Name = "Email Address"), EmailAddress, MaxLength(256)]
+        [Required, Display(Name = "Email Address"), EmailAddress, MaxLength(20)]
         public string Email { get; set; }
 
         [Required, Display(Name = "Password"), DataType(DataType.Password), MinLength(6), MaxLength(40)]

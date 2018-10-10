@@ -102,7 +102,7 @@ namespace TrainingNet.Controllers
             return View();
         }
 
-        [HttpPost("Create")]
+        [HttpPost("Create"),ValidateAntiForgeryToken]
         public IActionResult Create(MovieViewModel movieVM)
         {
             if (ModelState.IsValid)
@@ -149,7 +149,7 @@ namespace TrainingNet.Controllers
             }                
         }
 
-        [HttpPost("Edit/{id}")]
+        [HttpPost("Edit/{id}"), ValidateAntiForgeryToken]
         public IActionResult Edit(MovieViewModel movieVM)
         {
             try 
@@ -201,9 +201,7 @@ namespace TrainingNet.Controllers
                 return NotFound();
             }
         }
-
-        [HttpPost("Delete")]
-        [ValidateAntiForgeryToken]
+        [HttpPost("Delete"),ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int? id)
         {
             try
