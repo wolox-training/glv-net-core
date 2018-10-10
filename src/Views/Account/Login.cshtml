@@ -5,7 +5,7 @@
 @inject IViewLocalizer Localizer
 @model LoginViewModel
 
-<h1>@Localizer["Login"]</h1>
+<h1>@Localizer["LogIn"]</h1>
 @using (Html.BeginForm("Login", "Account", FormMethod.Post, new{ @class="form-horizontal"} ))
 {
     <div asp-validation-summary="All"></div>
