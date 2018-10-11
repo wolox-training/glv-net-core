@@ -15,7 +15,7 @@ namespace TrainingNet.Models.Views
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime ReleaseDate { get; set; }
         
-        [Required, Display(Name = "Genero"),RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$"), StringLength(30)]
+        [Required, Display(Name = "Genero"),RegularExpression(@"^[A-Z]+[a-zA-ZñÑáéíóúÁÉÍÓÚ""'\s-]*$"), StringLength(30)]
         public string Genre { get; set; }
         
         [Required, Display(Name = "Precio"), DataType(DataType.Currency), Column(TypeName = "decimal(18, 2)")]

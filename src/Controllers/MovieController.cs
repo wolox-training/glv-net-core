@@ -154,7 +154,7 @@ namespace TrainingNet.Controllers
             }                
         }
 
-        [HttpPost("Edit/{id}"), ValidateAntiForgeryToken]
+        [HttpPost("Edit/{id}")]
         public IActionResult Edit(MovieViewModel movieVM)
         {
             try 
