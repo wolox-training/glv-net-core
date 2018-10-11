@@ -251,6 +251,7 @@ namespace TrainingNet.Controllers
                 return NotFound();
             }
         }
+        
         [HttpGet("SendMovieMail")]
         public IActionResult SendMovieMail(int? id)
         {
@@ -277,8 +278,6 @@ namespace TrainingNet.Controllers
                 return NotFound();
             }
         }
-
-
 
         [HttpPost("SendMovieMail")]
         public IActionResult SendMovieMail([FromForm] string emailAddress, int? id)
