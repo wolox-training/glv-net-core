@@ -1,4 +1,3 @@
-
 using System;
 using System.Net;
 using System.Net.Mail;
@@ -15,7 +14,6 @@ namespace TrainingNet.Mail
         private static int HostPort { get; set; }
         private static string Name { get; set; }
 
-        
         public static void SetAccountConfiguration(IConfiguration config)
         {
             Email = config["Mailer:Email"];
