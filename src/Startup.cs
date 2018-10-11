@@ -12,6 +12,7 @@ using Swashbuckle.AspNetCore.Swagger;
 using TrainingNet.Models;
 using TrainingNet.Repositories.Database;
 using TrainingNet.Repositories.Interfaces;
+using TrainingNet.Mail;
 
 namespace TrainingNet
 {
@@ -55,7 +56,6 @@ namespace TrainingNet
                 "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
                 options.User.RequireUniqueEmail = true;
             });
-
             services.ConfigureApplicationCookie(options =>
             {
                 // Cookie settings
@@ -97,6 +97,7 @@ namespace TrainingNet
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            Mailer.SetAccountConfiguration(Configuration);
             app.UseMvc();
             app.UseSwagger();
             app.UseSwaggerUI(c =>

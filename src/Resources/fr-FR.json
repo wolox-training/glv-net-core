@@ -34,5 +34,7 @@
     "Welcome":"Bienvenue",
     "Users":"Utilisateurs",
     "Filter":"Filtre",
-    "Rating":"Évaluation"
+    "Rating":"Évaluation",
+    "SendMail":"Envoyer un mail",
+    "TextSend":"Entrez l'email à envoyer"
 }
