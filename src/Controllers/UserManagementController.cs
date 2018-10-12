@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TrainingNet.Models.Views;
 using TrainingNet.Repositories.Interfaces;
 
@@ -21,6 +21,7 @@ namespace TrainingNet.Controllers
         {
             get { return this._unitOfWork; }
         }
+
         [HttpGet("Users")]
         public ActionResult Users()
         {
