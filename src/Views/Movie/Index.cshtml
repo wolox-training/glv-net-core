@@ -27,19 +27,19 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(m => m.MoviesList[0].Title)
+                <a asp-controller="Movie" asp-action="Index" asp-route-sortOrder="@ViewData["TitleSort"]">@Html.DisplayNameFor(m => m.MoviesList[0].Title)</a>
             </th>
             <th>
-                @Html.DisplayNameFor(m => m.MoviesList[0].Genre)
+                <a asp-controller="Movie" asp-action="Index" asp-route-sortOrder="@ViewData["GenreSort"]">@Html.DisplayNameFor(m => m.MoviesList[0].Genre)</a>
             </th>
             <th>
-                @Html.DisplayNameFor(m => m.MoviesList[0].ReleaseDate)
+                <a asp-controller="Movie" asp-action="Index" asp-route-sortOrder="@ViewData["DateSort"]">@Html.DisplayNameFor(m => m.MoviesList[0].ReleaseDate)</a>
             </th>
             <th>
-                @Html.DisplayNameFor(m => m.MoviesList[0].Price)
+                <a asp-controller="Movie" asp-action="Index" asp-route-sortOrder="@ViewData["PriceSort"]">@Html.DisplayNameFor(m => m.MoviesList[0].Price)</a>
             </th>
             <th>
-                @Html.DisplayNameFor(m => m.MoviesList[0].Rating)
+                <a asp-controller="Movie" asp-action="Index" asp-route-sortOrder="@ViewData["RatingSort"]">@Html.DisplayNameFor(m => m.MoviesList[0].Rating)</a>
             </th>
             <th>@(Localizer["Options"].Value)</th>
         </tr>
