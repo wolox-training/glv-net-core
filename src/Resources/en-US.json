@@ -12,5 +12,7 @@
     "Price":"Price",
     "Register":"Register",
     "Cancel":"Cancel",
-    "Agree":"Agree"
+    "Agree":"Agree",
+    "Edit":"Edit",
+    "Create":"Create"
 }
