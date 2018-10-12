@@ -56,41 +56,38 @@ namespace TrainingNet.Controllers
                 {
                     movies = movies.Where(m => m.Genre == movieGenre);
                 }
-                if (!String.IsNullOrEmpty(sortOrder))
+                switch (sortOrder)
                 {
-                    switch (sortOrder)
-                    {
-                        case "title_desc":
-                            movies = movies.OrderBy(m => m.Title);
-                            break;
-                        case "date":
-                            movies = movies.OrderBy(m => m.ReleaseDate);
-                            break;
-                        case "date_desc":
-                            movies = movies.OrderByDescending(m => m.ReleaseDate);
-                            break;
-                        case "genre":
-                            movies = movies.OrderBy(m => m.Genre);
-                            break;
-                        case "genre_desc":
-                            movies = movies.OrderByDescending(m => m.Genre);
-                            break;
-                        case "price":
-                            movies = movies.OrderBy(m => m.Price);
-                            break;
-                        case "price_desc":
-                            movies = movies.OrderByDescending(m => m.Price);
-                            break;
-                        case "rating":
-                            movies = movies.OrderBy(m => m.Rating);
-                            break;
-                        case "rating_desc":
-                            movies = movies.OrderByDescending(m => m.Rating);
-                            break;
-                        default:
-                            movies = movies.OrderBy(m => m.Title).ThenBy(m => m.ReleaseDate).ThenBy(m => m.Genre).ThenBy(m => m.Price).ThenBy(m => m.Rating);
-                            break;
-                    }
+                    case "title_desc":
+                        movies = movies.OrderByDescending(m => m.Title.ToLower());
+                        break;
+                    case "date":
+                        movies = movies.OrderBy(m => m.ReleaseDate);
+                        break;
+                    case "date_desc":
+                        movies = movies.OrderByDescending(m => m.ReleaseDate);
+                        break;
+                    case "genre":
+                        movies = movies.OrderBy(m => m.Genre);
+                        break;
+                    case "genre_desc":
+                        movies = movies.OrderByDescending(m => m.Genre);
+                        break;
+                    case "price":
+                        movies = movies.OrderBy(m => m.Price);
+                        break;
+                    case "price_desc":
+                        movies = movies.OrderByDescending(m => m.Price);
+                        break;
+                    case "rating":
+                        movies = movies.OrderBy(m => m.Rating);
+                        break;
+                    case "rating_desc":
+                        movies = movies.OrderByDescending(m => m.Rating);
+                        break;
+                    default:
+                        movies = movies.OrderBy(m => m.Title.ToLower());
+                        break;
                 }
                 movieGenreVM.GenresList = new SelectList(genreQuery.Distinct());
                 var moviesVM = movies.Select(m => new MovieViewModel
