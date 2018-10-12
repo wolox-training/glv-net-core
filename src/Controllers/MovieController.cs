@@ -28,7 +28,6 @@ namespace TrainingNet.Controllers
         {
             try
             {
-                var moviesVLM = new MovieListViewModel();
                 var movies = UnitOfWork.MovieRepository.GetAll();
                 if (movies == null)
                     throw new NullReferenceException();
