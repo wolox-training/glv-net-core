@@ -149,6 +149,7 @@ namespace TrainingNet.Controllers
                 return NotFound();
             }
         }
+
         [HttpPost("Delete")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int? id)
@@ -169,6 +170,7 @@ namespace TrainingNet.Controllers
                 return NotFound();
             }
         }
+        
         [HttpGet("Details")]
         public IActionResult Details(int? id)
         {
