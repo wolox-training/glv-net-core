@@ -10,7 +10,7 @@ using TrainingNet.Repositories.Database;
 namespace TrainingNet.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20181017194256_CommentsOnMovies")]
+    [Migration("20181017210343_CommentsOnMovies")]
     partial class CommentsOnMovies
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -195,7 +195,7 @@ namespace TrainingNet.Migrations
 
                     b.HasIndex("MovieId");
 
-                    b.ToTable("Comment");
+                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("TrainingNet.Models.Movie", b =>

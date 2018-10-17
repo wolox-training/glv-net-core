@@ -8,7 +8,7 @@ namespace TrainingNet.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Comment",
+                name: "Comments",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -20,9 +20,9 @@ namespace TrainingNet.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Comment", x => x.Id);
+                    table.PrimaryKey("PK_Comments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Comment_Movies_MovieId",
+                        name: "FK_Comments_Movies_MovieId",
                         column: x => x.MovieId,
                         principalTable: "Movies",
                         principalColumn: "Id",
@@ -30,15 +30,15 @@ namespace TrainingNet.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Comment_MovieId",
-                table: "Comment",
+                name: "IX_Comments_MovieId",
+                table: "Comments",
                 column: "MovieId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Comment");
+                name: "Comments");
         }
     }
 }
