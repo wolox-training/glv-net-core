@@ -8,8 +8,7 @@
     <div class = "col-md-10">
       @Html.Label("Comment",Localizer["Comment"].Value, new { @class = "col-md-2 control-label" })
         <div class = "col-md-10dotnet build">
-          
-            @Html.DisplayNameFor(m => m.Comments.First, new { @class = "form-control" })
+            @Html.DisplayNameFor(Model => Model.Comments.First, new { @class = "form-control" })
         </div>
     </div>
 </div>
