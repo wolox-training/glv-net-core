@@ -3,6 +3,8 @@ using TrainingNet.Repositories.Interfaces;
 using TrainingNet.Models.Views;
 using TrainingNet.Models;
 using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace TrainingNet.Controllers
 {
@@ -19,6 +21,30 @@ namespace TrainingNet.Controllers
         private IUnitOfWork UnitOfWork
         {
             get { return this._unitOfWork; }
+        }
+
+        [HttpGet("")]
+        public IActionResult Index()
+        {
+            try
+            {
+                var movies = UnitOfWork.MovieRepository.GetAll();
+                if (movies == null)
+                    throw new NullReferenceException();
+                var moviesVM = movies.Select(m => new MovieViewModel
+                {
+                    Id = m.Id,
+                    Title = m.Title,
+                    ReleaseDate = m.ReleaseDate,
+                    Genre = m.Genre,
+                    Price = m.Price,
+                }).ToList();
+                return View(moviesVM);
+            }
+            catch (NullReferenceException)
+            {
+                return NotFound();
+            }
         }
 
         [HttpGet("Create")]

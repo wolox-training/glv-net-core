@@ -6,6 +6,7 @@
     "HomePage": "Page d'accueil.",
     "GenericMessage": "Utilisez cette zone pour fournir des informations supplémentaires.",
     "Movie": "Film",
+    "Movies": "Films",
     "Title":"Title",
     "ReleaseDate":"Date de sortie",
     "Genre":"Genre",
@@ -14,5 +15,7 @@
     "Cancel":"Annuler",
     "Agree":"Accepter",
     "Edit":"Modifier",
-    "Create":"Créer"
+    "Create":"Créer",
+    "View":"Voir",
+    "Options":"Options"
 }

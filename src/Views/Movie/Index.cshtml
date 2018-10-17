@@ -1,0 +1,57 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using System.Globalization;
+@using System.Collections.Generic
+@using TrainingNet.Models.Views
+@inject IViewLocalizer Localizer
+@model IEnumerable<MovieViewModel>
+@{
+    ViewData["Title"] = Localizer["Movie"];
+}
+
+<h2>@Localizer["Movie"]</h2>
+
+<p>
+    <a asp-area="" asp-controller="Movie" asp-action="Create">@(Localizer["Create"].Value) @(Localizer["Movie"].Value)</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                
+                @Html.DisplayNameFor(m => m.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Genre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.ReleaseDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Price)
+            </th>
+            <th>@(Localizer["Options"].Value)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) 
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Genre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReleaseDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">@(Localizer["Edit"].Value) @(Localizer["Movie"].Value)</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
