@@ -1,4 +1,4 @@
-@*
+
 @using Microsoft.AspNetCore.Mvc.Localization
 @using System.Globalization;
 @inject IViewLocalizer Localizer
@@ -7,9 +7,9 @@
 <div class = "form-group">
     <div class = "col-md-10">
       @Html.Label("Comment",Localizer["Comment"].Value, new { @class = "col-md-2 control-label" })
-        <div class = "col-md-10">
+        <div class = "col-md-10dotnet build">
           
-            @Html.DisplayNameFor(m => m.Comment, new { @class = "form-control" })
+            @Html.DisplayNameFor(m => m.Comments.First, new { @class = "form-control" })
         </div>
     </div>
 </div>
@@ -25,4 +25,4 @@
         }
     </tbody>
 </table>
-*@
+
