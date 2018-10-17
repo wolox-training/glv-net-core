@@ -1,0 +1,28 @@
+@*
+@using Microsoft.AspNetCore.Mvc.Localization
+@using System.Globalization;
+@inject IViewLocalizer Localizer
+@model TrainingNet.Models.Views.MovieViewModel
+
+<div class = "form-group">
+    <div class = "col-md-10">
+      @Html.Label("Comment",Localizer["Comment"].Value, new { @class = "col-md-2 control-label" })
+        <div class = "col-md-10">
+          
+            @Html.DisplayNameFor(m => m.Comment, new { @class = "form-control" })
+        </div>
+    </div>
+</div>
+<table class="table">
+    <tbody>
+        @foreach (var item in Model.Comments) 
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Text)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+*@

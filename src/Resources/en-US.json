@@ -39,5 +39,7 @@
     "TextSend":"Enter email to send",
     "Previous":"Previous",
     "Next":"Next",
-    "All":"All"
+    "All":"All",
+    "TextComment":"Add comment related to",
+    "SendComment":"Send Comment"
 }
