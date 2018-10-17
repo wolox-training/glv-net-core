@@ -14,8 +14,6 @@ namespace TrainingNet.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     Text = table.Column<string>(nullable: true),
-                    IdMovie = table.Column<int>(nullable: false),
-                    MovieAssociated = table.Column<string>(nullable: true),
                     MovieId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>

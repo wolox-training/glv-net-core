@@ -10,7 +10,7 @@ using TrainingNet.Repositories.Database;
 namespace TrainingNet.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20181017210343_CommentsOnMovies")]
+    [Migration("20181017212621_CommentsOnMovies")]
     partial class CommentsOnMovies
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -183,10 +183,6 @@ namespace TrainingNet.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("IdMovie");
-
-                    b.Property<string>("MovieAssociated");
-
                     b.Property<int?>("MovieId");
 
                     b.Property<string>("Text");
@@ -265,7 +261,7 @@ namespace TrainingNet.Migrations
 
             modelBuilder.Entity("TrainingNet.Models.Comment", b =>
                 {
-                    b.HasOne("TrainingNet.Models.Movie")
+                    b.HasOne("TrainingNet.Models.Movie", "Movie")
                         .WithMany("Comments")
                         .HasForeignKey("MovieId");
                 });

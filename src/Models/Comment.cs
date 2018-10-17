@@ -8,7 +8,6 @@ namespace TrainingNet.Models
     {
         public int Id { get; set; }
         public string Text { get; set; }
-        public int IdMovie { get; set; }
-        public string MovieAssociated { get; set; }
+        public virtual Movie Movie { get; set; }
     }
 }

@@ -181,10 +181,6 @@ namespace TrainingNet.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("IdMovie");
-
-                    b.Property<string>("MovieAssociated");
-
                     b.Property<int?>("MovieId");
 
                     b.Property<string>("Text");
@@ -263,7 +259,7 @@ namespace TrainingNet.Migrations
 
             modelBuilder.Entity("TrainingNet.Models.Comment", b =>
                 {
-                    b.HasOne("TrainingNet.Models.Movie")
+                    b.HasOne("TrainingNet.Models.Movie", "Movie")
                         .WithMany("Comments")
                         .HasForeignKey("MovieId");
                 });
