@@ -5,18 +5,20 @@ using Microsoft.AspNetCore.Authorization;
 using TrainingNet.Models;
 using TrainingNet.Models.Views;
 
-
 namespace TrainingNet.Controllers
 {
   [Route("[controller]"), Authorize]
     public class AccountController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
+
         private readonly SignInManager<ApplicationUser> _signInManager;
+        
         public SignInManager<ApplicationUser> SignInManager
         {
             get { return _signInManager; }
         }
+        
          public UserManager<ApplicationUser> UserManager
         {
             get { return _userManager; }
