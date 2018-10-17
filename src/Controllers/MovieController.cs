@@ -25,7 +25,7 @@ namespace TrainingNet.Controllers
         }
 
         [HttpGet("")]
-        public IActionResult Index()
+        public IActionResult Index(string searchString, string movieGenre)
         {
             try
             {
@@ -86,7 +86,6 @@ namespace TrainingNet.Controllers
                         return View(movieGenreVM);
                     }
                 }
-               
             }
             catch (NullReferenceException)
             {
