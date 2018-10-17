@@ -24,8 +24,6 @@ namespace TrainingNet.Models.Views
 
         [Required, Display(Name = "Calificación"), RegularExpression(@"^[0-9]+[0-9""'\s-]*$"), StringLength(2)]
         public string Rating { get; set; }
-
-        [Required]
         public ICollection<Comment> Comments { get; set; }
   }
 }
