@@ -15,8 +15,8 @@
 </p>
 <form asp-controller="Movie" asp-action="Index" method="get">
     <p>
-        <select name="movieGenre" asp-items="Model.GenresList" asp-for="MovieGenre">
-            <option value="">All</option>
+        <select name="currentGenre" asp-items="Model.GenresList" asp-for="CurrentGenre">
+            <option value="">@Localizer["All"].Value</option>
         </select>
         <input type="text" name="SearchString" />
         <input type="submit" value="@Localizer["Filter"]" />
@@ -27,19 +27,19 @@
     <thead>
         <tr>
             <th>
-                <a asp-controller="Movie" asp-action="Index" asp-route-sortOrder="@ViewData["TitleSort"]">@Html.DisplayNameFor(m => m.MoviesList[0].Title)</a>
+                <a asp-controller="Movie" asp-action="Index" asp-route-sortOrder="@ViewData["TitleSort"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">@Html.DisplayNameFor(m => m.MoviesList[0].Title)</a>
             </th>
             <th>
-                <a asp-controller="Movie" asp-action="Index" asp-route-sortOrder="@ViewData["GenreSort"]">@Html.DisplayNameFor(m => m.MoviesList[0].Genre)</a>
+                <a asp-controller="Movie" asp-action="Index" asp-route-sortOrder="@ViewData["GenreSort"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">@Html.DisplayNameFor(m => m.MoviesList[0].Genre)</a>
             </th>
             <th>
-                <a asp-controller="Movie" asp-action="Index" asp-route-sortOrder="@ViewData["DateSort"]">@Html.DisplayNameFor(m => m.MoviesList[0].ReleaseDate)</a>
+                <a asp-controller="Movie" asp-action="Index" asp-route-sortOrder="@ViewData["DateSort"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">@Html.DisplayNameFor(m => m.MoviesList[0].ReleaseDate)</a>
             </th>
             <th>
-                <a asp-controller="Movie" asp-action="Index" asp-route-sortOrder="@ViewData["PriceSort"]">@Html.DisplayNameFor(m => m.MoviesList[0].Price)</a>
+                <a asp-controller="Movie" asp-action="Index" asp-route-sortOrder="@ViewData["PriceSort"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">@Html.DisplayNameFor(m => m.MoviesList[0].Price)</a>
             </th>
             <th>
-                <a asp-controller="Movie" asp-action="Index" asp-route-sortOrder="@ViewData["RatingSort"]">@Html.DisplayNameFor(m => m.MoviesList[0].Rating)</a>
+                <a asp-controller="Movie" asp-action="Index" asp-route-sortOrder="@ViewData["RatingSort"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">@Html.DisplayNameFor(m => m.MoviesList[0].Rating)</a>
             </th>
             <th>
                 <a asp-controller="Movie" asp-action="Index" asp-route-sortOrder="@ViewData["RatingSort"]">@Html.DisplayNameFor(m => m.MoviesList[0].Rating)</a>
@@ -76,3 +76,24 @@
         }
     </tbody>
 </table>
+
+@{
+    var prevDisabled = !Model.MoviesList.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.MoviesList.HasNextPage ? "disabled" : "";
+}
+
+<a  asp-action="Index" asp-route-sortOrder="@ViewData["CurrentSort"]"
+    asp-route-currentGenre="@Model.CurrentGenre"
+    asp-route-page="@(Model.MoviesList.PageIndex - 1)"
+    asp-route-currentFilter="@ViewData["CurrentFilter"]"
+    class="btn btn-default @prevDisabled">
+    @(Localizer["Previous"].Value)
+</a>
+<a  asp-action="Index"
+    asp-route-sortOrder="@ViewData["CurrentSort"]"
+    asp-route-currentGenre="@Model.CurrentGenre"
+    asp-route-page="@(Model.MoviesList.PageIndex + 1)"
+    asp-route-currentFilter="@ViewData["CurrentFilter"]"
+    class="btn btn-default @nextDisabled">
+    @(Localizer["Next"].Value)
+</a>

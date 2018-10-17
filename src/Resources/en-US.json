@@ -36,5 +36,8 @@
     "Filter":"Filter",
     "Rating":"Rating",
     "SendMail":"Send Mail",
-    "TextSend":"Enter email to send"
+    "TextSend":"Enter email to send",
+    "Previous":"Previous",
+    "Next":"Next",
+    "All":"All"
 }

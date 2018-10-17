@@ -9,6 +9,7 @@ using TrainingNet.Models.Views;
 using TrainingNet.Repositories.Interfaces;
 using TrainingNet.Mail;
 using System.Collections.Generic;
+using TrainingNet.Paging;
 
 namespace TrainingNet.Controllers
 {
@@ -31,10 +32,24 @@ namespace TrainingNet.Controllers
         }
 
         [HttpGet(""), Authorize]
-        public IActionResult Index(string searchString, string movieGenre, string sortOrder)
-        {
+        public IActionResult Index(string searchString, string currentGenre, string sortOrder, string currentFilter, int? page)
+        {  
+                                            //null   <---------------------------------------------------ok
+                                            //----------------------------------------------------------->VD
+
+                                            //algo   ---------------------------------------------------->VD              1
             try
             {
+                if (searchString != null)
+                {
+                    page = 1;
+                }
+                else
+                {
+                    searchString = currentFilter;
+                }
+                ViewData["CurrentFilter"] = searchString;
+                ViewData["CurrentSort"] = sortOrder;
                 ViewData["TitleSort"] = String.IsNullOrEmpty(sortOrder) ? "title_desc" : "";
                 ViewData["DateSort"] = sortOrder == "date" ? "date_desc" : "date";  
                 ViewData["GenreSort"] = sortOrder == "genre" ? "genre_desc" : "genre";
@@ -47,8 +62,10 @@ namespace TrainingNet.Controllers
                 var genreQuery = movies.OrderBy(m => m.Genre).Select(m => m.Genre).Distinct().ToList();
                 if (!String.IsNullOrEmpty(searchString))
                     movies = movies.Where(m => m.Title.Contains(searchString));
-                if (!String.IsNullOrEmpty(movieGenre))
-                    movies = movies.Where(m => m.Genre == movieGenre);
+                if (!String.IsNullOrEmpty(currentGenre))
+                {
+                    movies = movies.Where(m => m.Genre == currentGenre);
+                }
                 switch (sortOrder)
                 {
                     case "title_desc":
@@ -92,7 +109,9 @@ namespace TrainingNet.Controllers
                         Price = m.Price,
                         Rating = m.Rating,
                     });
-                movieGenreVM.MoviesList = moviesVM.ToList();
+                int pageSize = 3;
+                movieGenreVM.CurrentGenre = currentGenre;
+                movieGenreVM.MoviesList = PaginatedList<MovieViewModel>.Create(moviesVM.ToList(), page ?? 1, pageSize);
                 return View(movieGenreVM);
             }
             catch (NullReferenceException)
