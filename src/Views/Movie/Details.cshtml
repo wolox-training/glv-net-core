@@ -1,0 +1,12 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@using System.Globalization;
+@inject IViewLocalizer Localizer
+@model TrainingNet.Models.Views.MovieViewModel
+
+@{ViewData["Title"] = Localizer["Movie"];}
+<partial name="~/Views/Shared/_Details.cshtml" view-data="ViewData" />
+<div class = "form-group">
+    <div class = "col-md-10">
+        <a asp-action="Index" asp-controller="Movie" class = "btn btn-default" >@(@Localizer["Return"].Value)</a>
+    </div>
+</div>

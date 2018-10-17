@@ -6,7 +6,7 @@
     "HomePage": "Home Page.",
     "GenericMessage": "Use this area to provide additional information.",
     "Movie": "Movie",
-    "Movie": "Movies",
+    "Movies": "Movies",
     "Title":"Title",
     "ReleaseDate":"Release Date",
     "Genre":"Genre",
@@ -17,5 +17,8 @@
     "Edit":"Edit",
     "Create":"Create",
     "View":"View",
-    "Options":"Options"
+    "Options":"Options",
+    "Delete":"Delete",
+    "Details":"Details",
+    "Return":"Return"
 }

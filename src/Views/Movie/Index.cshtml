@@ -49,7 +49,9 @@
                     @Html.DisplayFor(modelItem => item.Price)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">@(Localizer["Edit"].Value) @(Localizer["Movie"].Value)</a>
+                    <a asp-action="Edit" asp-route-id="@item.Id">@(Localizer["Edit"].Value)</a> 
+                    <a asp-action="Delete" asp-route-id="@item.Id">@(Localizer["Delete"].Value)</a> 
+                    <a asp-action="Details" asp-route-id="@item.Id">@(Localizer["Details"].Value)</a>
                 </td>
             </tr>
         }

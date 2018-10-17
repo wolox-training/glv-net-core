@@ -1,0 +1,36 @@
+@using Microsoft.AspNetCore.Mvc.Localization
+@using System.Globalization;
+@inject IViewLocalizer Localizer
+@model TrainingNet.Models.Views.MovieViewModel
+
+<div class="form-horizontal">
+    @Html.AntiForgeryToken()
+    <br>
+    <h2>@Localizer["Movie"]</h2>
+    <hr/>
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class = "form-group">
+        @Html.Label("Title",Localizer["Movie"].Value, new { @class = "col-md-2 control-label" })
+        <div class = "col-md-10">
+            @Html.DisplayFor(m => m.Title, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class = "form-group">
+        @Html.Label("ReleaseDate",Localizer["ReleaseDate"].Value, new { @class = "col-md-2 control-label" })
+        <div class = "col-md-10">
+            @Html.DisplayFor(m => m.ReleaseDate, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class = "form-group">
+        @Html.Label("Genre",Localizer["Genre"].Value, new { @class = "col-md-2 control-label" })
+        <div class = "col-md-10">
+            @Html.DisplayFor(m => m.Genre, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class = "form-group">
+        @Html.Label("Price",Localizer["Price"].Value, new { @class = "col-md-2 control-label" })
+        <div class = "col-md-10">
+            @Html.DisplayFor(m => m.Price, new { @class = "form-control" })
+        </div>
+    </div>
+</div>

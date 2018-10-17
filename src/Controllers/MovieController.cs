@@ -67,7 +67,7 @@ namespace TrainingNet.Controllers
                 };
                 UnitOfWork.MovieRepository.Add(movie);
                 UnitOfWork.Complete();
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Movie");
             }
             return View();
         }
@@ -115,7 +115,80 @@ namespace TrainingNet.Controllers
                 };
                 UnitOfWork.MovieRepository.Update(movie);
                 UnitOfWork.Complete();
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Movie");
+            }
+            catch(NullReferenceException)
+            {
+                return NotFound();
+            }
+        }
+
+        [HttpGet("Delete")]
+        public IActionResult Delete(int? id)
+        {
+            try 
+            {
+                if (id == null)
+                    throw new NullReferenceException();
+                var movie = UnitOfWork.MovieRepository.Get(id.Value);
+                if (movie == null)
+                    throw new NullReferenceException();
+                MovieViewModel movieVM = new MovieViewModel
+                {
+                    Id = movie.Id,
+                    Title = movie.Title,
+                    ReleaseDate = movie.ReleaseDate,
+                    Genre = movie.Genre,
+                    Price = movie.Price,
+                };
+                return View(movieVM);
+            }
+            catch(NullReferenceException)
+            {
+                return NotFound();
+            }
+        }
+
+        [HttpPost("Delete")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteConfirmed(int? id)
+        {
+            try
+            {
+                if (id == null)
+                    throw new NullReferenceException();
+                var movie = UnitOfWork.MovieRepository.Get(id.Value);
+                if (movie == null)
+                    throw new NullReferenceException();
+                UnitOfWork.MovieRepository.Remove(movie);
+                UnitOfWork.Complete();
+                return RedirectToAction("Index", "Movie");
+            }
+            catch(NullReferenceException)
+            {
+                return NotFound();
+            }
+        }
+        
+        [HttpGet("Details")]
+        public IActionResult Details(int? id)
+        {
+            try 
+            {
+                if (id == null)
+                    throw new NullReferenceException();
+                var movie = UnitOfWork.MovieRepository.Get(id.Value);
+                if (movie == null)
+                    throw new NullReferenceException();
+                MovieViewModel movieVM = new MovieViewModel
+                {
+                    Id = movie.Id,
+                    Title = movie.Title,
+                    ReleaseDate = movie.ReleaseDate,
+                    Genre = movie.Genre,
+                    Price = movie.Price,
+                };
+                return View(movieVM);
             }
             catch(NullReferenceException)
             {
