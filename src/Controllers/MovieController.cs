@@ -30,19 +30,6 @@ namespace TrainingNet.Controllers
             try
             {
                 var movies = UnitOfWork.MovieRepository.GetAll();
-                if (movies == null)
-                    throw new NullReferenceException();
-                var moviesVM = movies.Select(m => new MovieViewModel
-                {
-                    Id = m.Id,
-                    Title = m.Title,
-                    ReleaseDate = m.ReleaseDate,
-                    Genre = m.Genre,
-                    Price = m.Price,
-                }).ToList();
-                return View(moviesVM);
-                */
-                var movies = UnitOfWork.MovieRepository.GetAll();
                 var genreQuery = movies.OrderBy(m => m.Genre).Select(m => m.Genre).Distinct().ToList();
                 if (movies == null)
                     throw new NullReferenceException();
