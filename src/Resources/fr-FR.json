@@ -20,5 +20,17 @@
     "Options":"Options",
     "Delete":"Supprimer",
     "Details":"Détails",
-    "Return":"Retour"
+    "Return":"Retour",
+    "Email":"Email",
+    "Password":"Password",
+    "RememberMe":"Remember me?",
+    "SigIn":"Register",
+    "LogIn": "Login",
+    "LogOut": "Logout",
+    "Profiles": "Profils",
+    "ConfirmPassword": "Changer le mot de passe",
+    "AccessDenied": "Accès refusé",
+    "UserName": "Nom d'utilisateur",
+    "Welcome":"Bienvenue",
+    "Users":"Utilisateurs"
 }

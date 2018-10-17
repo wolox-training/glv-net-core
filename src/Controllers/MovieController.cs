@@ -5,10 +5,11 @@ using TrainingNet.Models;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TrainingNet.Controllers
 {
-    [Route("[controller]")]
+    [Route("[controller]"), Authorize]
     public class MovieController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

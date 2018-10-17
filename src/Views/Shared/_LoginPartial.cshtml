@@ -1,0 +1,22 @@
+@using System.Globalization
+@using Microsoft.AspNetCore.Identity
+@using TrainingNet.Models.Views
+@using Microsoft.AspNetCore.Mvc.Localization;
+
+@inject IViewLocalizer Localizer
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+
+@if (User.Identity.IsAuthenticated)
+{
+  <li><a asp-area="" asp-controller="Movie" asp-action="Index">@(Localizer["Welcome"].Value) @(User.Identity.Name)</a></li>
+  <li><a asp-area="" asp-controller="Account" asp-action="Logout">@(Localizer["LogOut"])</a></li>
+  <li><a asp-area="" asp-controller="Movie" asp-action="Index">@(Localizer["Movies"].Value)</a></li>
+  <li><a asp-area="" asp-controller="UserManagement" asp-action="Users">@(Localizer["Users"].Value)</a></li>
+}
+else
+{
+  <li>@Html.ActionLink(Localizer["Register"].Value,"Register","Account",null)</li>
+  <li>@Html.ActionLink(Localizer["LogIn"].Value,"Login","Account",null)</li>
+}
