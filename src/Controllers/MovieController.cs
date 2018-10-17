@@ -34,10 +34,6 @@ namespace TrainingNet.Controllers
         [HttpGet(""), Authorize]
         public IActionResult Index(string searchString, string currentGenre, string sortOrder, string currentFilter, int? page)
         {  
-                                            //null   <---------------------------------------------------ok
-                                            //----------------------------------------------------------->VD
-
-                                            //algo   ---------------------------------------------------->VD              1
             try
             {
                 if (searchString != null)
