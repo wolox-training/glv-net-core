@@ -13,6 +13,7 @@ using TrainingNet.Models;
 using TrainingNet.Repositories.Database;
 using TrainingNet.Repositories.Interfaces;
 using TrainingNet.Mail;
+using Newtonsoft.Json;
 
 namespace TrainingNet
 {
@@ -66,13 +67,14 @@ namespace TrainingNet
                 options.SlidingExpiration = true;
             });
 
-            services.AddMvc();
             services.AddJsonLocalization(options => options.ResourcesPath = "Resources");
-            services.AddMvc().AddViewLocalization();
+            services.AddMvc().AddViewLocalization().AddJsonOptions( opt =>
+            opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
+            
             CultureInfo.CurrentCulture = new CultureInfo("es-ES");
             CultureInfo.CurrentUICulture = new CultureInfo("es-ES");
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddDbContext<DataBaseContext>(options =>  options.UseNpgsql(Configuration["ConnectionString"]));
+            services.AddDbContext<DataBaseContext>(options => options.UseNpgsql(Configuration["ConnectionString"]));
             services.AddScoped<DataBaseContext>(); 
             services.AddSwaggerGen(c =>
             {

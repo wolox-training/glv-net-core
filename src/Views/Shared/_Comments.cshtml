@@ -11,11 +11,14 @@
         {
             <table class="table">
                 <tbody>
-                    @foreach (var item in Model.Comments) 
-                    {
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Text)
+                                <script type="text/javascript">
+                                    var items = @Html.Raw(Json.Encode(Model.Comments));
+                                    for (var i = 0; i < items.length; i++) {
+                                        alert(JSON.stringify(items[i], null, 4));
+                                    }
+                                </script>
                             </td>
                         </tr>
                     }

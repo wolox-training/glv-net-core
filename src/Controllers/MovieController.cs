@@ -188,7 +188,7 @@ namespace TrainingNet.Controllers
                     Rating = movieVM.Rating,
                     Comments = movieVM.Comments
                 };
-               UnitOfWork.MovieRepository.Update(movie);
+                UnitOfWork.MovieRepository.Update(movie);
                 UnitOfWork.Complete();
                 return RedirectToAction("Index", "Movie");
             }
@@ -267,31 +267,6 @@ namespace TrainingNet.Controllers
                     Comments = movie.Comments
                 };
                 return View(movieVM);
-            }
-            catch(NullReferenceException)
-            {
-                return NotFound();
-            }
-        }
-        
-        [HttpPost("AddComment")]
-        public IActionResult AddComment(int? id, string commentText)
-        {
-            try 
-            {
-                if (id == null)
-                    throw new NullReferenceException();
-                var movie = UnitOfWork.MovieRepository.GetMovieWithComments(id.Value);
-                if (movie == null)
-                    throw new NullReferenceException();
-                var comment = new Comment
-                {
-                    Text = commentText,
-                    Movie = movie
-                };
-                movie.Comments.Add(comment);
-                UnitOfWork.Complete();
-                return RedirectToAction("Details", "Movie", new { id = id});
             }
             catch(NullReferenceException)
             {
