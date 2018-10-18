@@ -32,5 +32,6 @@
     "AccessDenied": "Acceso denegado",
     "UserName": "Nombre de usuario",
     "Welcome":"Bienvenido",
-    "Users":"Usuarios"
+    "Users":"Usuarios",
+    "Filter":"Filtrado"
 }

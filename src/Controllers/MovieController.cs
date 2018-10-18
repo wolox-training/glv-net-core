@@ -4,8 +4,8 @@ using TrainingNet.Models.Views;
 using TrainingNet.Models;
 using System;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace TrainingNet.Controllers
 {
@@ -25,22 +25,67 @@ namespace TrainingNet.Controllers
         }
 
         [HttpGet("")]
-        public IActionResult Index()
+        public IActionResult Index(string searchString, string movieGenre)
         {
             try
             {
                 var movies = UnitOfWork.MovieRepository.GetAll();
+                var genreQuery = movies.OrderBy(m => m.Genre).Select(m => m.Genre).Distinct().ToList();
                 if (movies == null)
                     throw new NullReferenceException();
-                var moviesVM = movies.Select(m => new MovieViewModel
+                if (!String.IsNullOrEmpty(searchString))
                 {
-                    Id = m.Id,
-                    Title = m.Title,
-                    ReleaseDate = m.ReleaseDate,
-                    Genre = m.Genre,
-                    Price = m.Price,
-                }).ToList();
-                return View(moviesVM);
+                    var moviesVM = movies.Select(m => new MovieViewModel
+                    {
+                        Id = m.Id,
+                        Title= m.Title,
+                        ReleaseDate = m.ReleaseDate,
+                        Genre = m.Genre,
+                        Price = m.Price,
+                    })
+                    .Where(m => m.Title.Contains(searchString))
+                    .ToList();
+                        var movieGenreVM = new MovieGenreViewModel();
+                        movieGenreVM.GenresList = new SelectList(genreQuery.Distinct());
+                        movieGenreVM.MoviesList = moviesVM.ToList();
+                    return View(movieGenreVM);
+                }
+                else
+                {
+                    if (!String.IsNullOrEmpty(movieGenre))
+                    {
+                        var moviesVM = movies.Select(m => new MovieViewModel
+                        {
+                            Id = m.Id,
+                            Title= m.Title,
+                            ReleaseDate = m.ReleaseDate,
+                            Genre = m.Genre,
+                            Price = m.Price,
+                        })
+                        .Where(m => m.Genre == movieGenre)
+                        .ToList();
+                        var movieGenreVM = new MovieGenreViewModel();
+                        movieGenreVM.GenresList = new SelectList(genreQuery.Distinct());
+                        movieGenreVM.MoviesList = moviesVM.ToList();
+
+                        return View(movieGenreVM);
+                    }
+                    else
+                    {
+                        var moviesVM = movies.Select(m => new MovieViewModel
+                        {
+                            Id = m.Id,
+                            Title = m.Title,
+                            ReleaseDate = m.ReleaseDate,
+                            Genre = m.Genre,
+                            Price = m.Price,
+                        }).ToList();
+                        var movieGenreVM = new MovieGenreViewModel();
+                        movieGenreVM.GenresList = new SelectList(genreQuery.Distinct());
+                        movieGenreVM.MoviesList = moviesVM.ToList();
+                        return View(movieGenreVM);
+                    }
+                }
             }
             catch (NullReferenceException)
             {
