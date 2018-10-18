@@ -42,6 +42,7 @@ namespace TrainingNet.Controllers
                         ReleaseDate = m.ReleaseDate,
                         Genre = m.Genre,
                         Price = m.Price,
+                        Rating = m.Rating,
                     })
                     .Where(m => m.Title.Contains(searchString))
                     .ToList();
@@ -61,6 +62,7 @@ namespace TrainingNet.Controllers
                             ReleaseDate = m.ReleaseDate,
                             Genre = m.Genre,
                             Price = m.Price,
+                            Rating = m.Rating,
                         })
                         .Where(m => m.Genre == movieGenre)
                         .ToList();
@@ -79,6 +81,7 @@ namespace TrainingNet.Controllers
                             ReleaseDate = m.ReleaseDate,
                             Genre = m.Genre,
                             Price = m.Price,
+                            Rating = m.Rating,
                         }).ToList();
                         var movieGenreVM = new MovieGenreViewModel();
                         movieGenreVM.GenresList = new SelectList(genreQuery.Distinct());
@@ -110,6 +113,7 @@ namespace TrainingNet.Controllers
                     ReleaseDate = movieVM.ReleaseDate,
                     Genre = movieVM.Genre,
                     Price = movieVM.Price,
+                    Rating = movieVM.Rating,
                 };
                 UnitOfWork.MovieRepository.Add(movie);
                 UnitOfWork.Complete();
@@ -135,6 +139,7 @@ namespace TrainingNet.Controllers
                     ReleaseDate = movie.ReleaseDate,
                     Genre = movie.Genre,
                     Price = movie.Price,
+                    Rating = movie.Rating,
                 };
                 return View(movieVM);
             }
@@ -158,6 +163,7 @@ namespace TrainingNet.Controllers
                     ReleaseDate = movieVM.ReleaseDate,
                     Genre = movieVM.Genre,
                     Price = movieVM.Price,
+                    Rating = movieVM.Rating,
                 };
                 UnitOfWork.MovieRepository.Update(movie);
                 UnitOfWork.Complete();
@@ -186,6 +192,7 @@ namespace TrainingNet.Controllers
                     ReleaseDate = movie.ReleaseDate,
                     Genre = movie.Genre,
                     Price = movie.Price,
+                    Rating = movie.Rating,
                 };
                 return View(movieVM);
             }
@@ -233,6 +240,7 @@ namespace TrainingNet.Controllers
                     ReleaseDate = movie.ReleaseDate,
                     Genre = movie.Genre,
                     Price = movie.Price,
+                    Rating = movie.Rating,
                 };
                 return View(movieVM);
             }

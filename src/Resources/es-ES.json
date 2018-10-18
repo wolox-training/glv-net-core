@@ -33,5 +33,6 @@
     "UserName": "Nombre de usuario",
     "Welcome":"Bienvenido",
     "Users":"Usuarios",
-    "Filter":"Filtrado"
+    "Filter":"Filtrado",
+    "Rating":"Calificacion"
 }
