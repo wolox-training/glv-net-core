@@ -24,7 +24,7 @@ namespace TrainingNet.Controllers
             get { return this._unitOfWork; }
         }
 
-        [HttpGet(""), Authorize]
+        [HttpGet("")]
         public IActionResult Index(string searchString, string movieGenre)
         {
             try
