@@ -42,5 +42,6 @@
     "All":"All",
     "TextComment":"Add comment related to",
     "SendComment":"Send Comment",
-    "Comment":"Comment"
+    "Comments":"Comments",
+    "NoComments":"No comments yet. Be the first..."
 }

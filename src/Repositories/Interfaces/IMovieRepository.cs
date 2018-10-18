@@ -3,5 +3,8 @@ using TrainingNet.Models;
 
 namespace TrainingNet.Repositories.Interfaces
 {
-    public interface IMovieRepository : IRepository<Movie>{}
+    public interface IMovieRepository : IRepository<Movie>
+    {
+        Movie GetMovieWitYourComments( int id);
+    }  
 }

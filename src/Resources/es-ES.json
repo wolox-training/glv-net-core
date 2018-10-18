@@ -42,5 +42,6 @@
     "All":"Todos",
     "TextComment":"Agregue comentario relacionado con la",
     "SendComment":"Enviar Comentario",
-    "Comment":"Comentario"
+    "Comments":"Comentarios",
+    "NoComments":"Sin comentarios aún. Se el primero..."
 }

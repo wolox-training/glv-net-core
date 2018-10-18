@@ -225,6 +225,7 @@ namespace TrainingNet.Controllers
                 return NotFound();
             }
         }
+
         [HttpPost("Delete"),ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int? id)
         {
@@ -252,7 +253,7 @@ namespace TrainingNet.Controllers
             {
                 if (id == null)
                     throw new NullReferenceException();
-                var movie = UnitOfWork.MovieRepository.Get(id.Value);
+                var movie = UnitOfWork.MovieRepository.GetMovieWitYourComments(id.Value);
                 if (movie == null)
                     throw new NullReferenceException();
                 MovieViewModel movieVM = new MovieViewModel
@@ -266,6 +267,31 @@ namespace TrainingNet.Controllers
                     Comments = movie.Comments
                 };
                 return View(movieVM);
+            }
+            catch(NullReferenceException)
+            {
+                return NotFound();
+            }
+        }
+        
+        [HttpPost("AddComment")]
+        public IActionResult AddComment(int? id, string commentText)
+        {
+            try 
+            {
+                if (id == null)
+                    throw new NullReferenceException();
+                var movie = UnitOfWork.MovieRepository.GetMovieWitYourComments(id.Value);
+                if (movie == null)
+                    throw new NullReferenceException();
+                var comment = new Comment
+                {
+                    Text = commentText,
+                    Movie = movie
+                };
+                movie.Comments.Add(comment);
+                UnitOfWork.Complete();
+                return RedirectToAction("Details", "Movie", new { id = id});
             }
             catch(NullReferenceException)
             {

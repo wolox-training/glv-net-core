@@ -6,22 +6,30 @@
 
 <div class = "form-group">
     <div class = "col-md-10">
-      @Html.Label("Comment",Localizer["Comment"].Value, new { @class = "col-md-2 control-label" })
-        <div class = "col-md-10dotnet build">
-            @Html.DisplayNameFor(Model => Model.Comments.First, new { @class = "form-control" })
-        </div>
-    </div>
-</div>
-<table class="table">
-    <tbody>
-        @foreach (var item in Model.Comments) 
+        @Html.Label("Comment",Localizer["Comments"].Value, new { @class = "col-md-2 control-label" })
+        <br>
+        @if (Model.Comments.Any())
+        {
+            <table class="table">
+                <tbody>
+                    @foreach (var item in Model.Comments) 
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Text)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Text)
+                    @(Localizer["NoComments"].Value)
                 </td>
             </tr>
         }
-    </tbody>
-</table>
-
+    </div>
+</div>
