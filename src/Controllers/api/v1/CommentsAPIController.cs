@@ -52,7 +52,9 @@ namespace TrainingNet.api.v1.Controllers
             try 
             {
                 if (idMovie == null)
-                    throw new NullReferenceException();
+                    throw new NullReferenceException("Movie Error");
+                if (string.IsNullOrEmpty(commentText))
+                    throw new NullReferenceException("Comment not found");
                 var movie = UnitOfWork.MovieRepository.GetMovieWitYourComments(idMovie.Value);
                 if (movie == null)
                     throw new NullReferenceException();
@@ -65,13 +67,11 @@ namespace TrainingNet.api.v1.Controllers
                 UnitOfWork.MovieRepository.Update(movie);
                 UnitOfWork.Complete();
                 return Json(new {comment=comment.Text.ToString()});
-
-                
-
             }
-            catch(NullReferenceException)
+            catch(NullReferenceException e)
             {
-                return NotFound();
+                Response.StatusCode=400;
+                return Json(e.Message);
             }
         }
     }
