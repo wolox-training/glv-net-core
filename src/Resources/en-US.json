@@ -34,5 +34,7 @@
     "Welcome":"Welcome",
     "Users":"Users",
     "Filter":"Filter",
-    "Rating":"Rating"
+    "Rating":"Rating",
+    "SendMail":"Send Mail",
+    "TextSend":"Enter email to send"
 }
