@@ -39,5 +39,9 @@
     "TextSend":"Ingresar correo electronico para enviar",
     "Previous":"Anterior",
     "Next":"Siguiente",
-    "All":"Todos"
+    "All":"Todos",
+    "TextComment":"Agregue comentario relacionado con la",
+    "SendComment":"Enviar Comentario",
+    "Comments":"Comentarios",
+    "NoComments":"Sin comentarios aún. Se el primero..."
 }

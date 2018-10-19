@@ -150,7 +150,7 @@ namespace TrainingNet.Controllers
             {
                 if (id == null)
                     throw new NullReferenceException();
-                var movie = UnitOfWork.MovieRepository.Get(id.Value);
+                var movie = UnitOfWork.MovieRepository.GetMovieWithComments(id.Value);
                 if (movie == null)
                     throw new NullReferenceException();
                 MovieViewModel movieVM = new MovieViewModel
@@ -171,7 +171,7 @@ namespace TrainingNet.Controllers
             }                
         }
 
-        [HttpPost("Edit/{id}")]
+        [HttpPost("Edit/{id}"), ValidateAntiForgeryToken]
         public IActionResult Edit(MovieViewModel movieVM)
         {
             try 
@@ -205,7 +205,7 @@ namespace TrainingNet.Controllers
             {
                 if (id == null)
                     throw new NullReferenceException();
-                var movie = UnitOfWork.MovieRepository.Get(id.Value);
+                var movie = UnitOfWork.MovieRepository.GetMovieWithComments(id.Value);
                 if (movie == null)
                     throw new NullReferenceException();
                 MovieViewModel movieVM = new MovieViewModel
@@ -225,6 +225,7 @@ namespace TrainingNet.Controllers
                 return NotFound();
             }
         }
+
         [HttpPost("Delete"),ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int? id)
         {
@@ -232,7 +233,7 @@ namespace TrainingNet.Controllers
             {
                 if (id == null)
                     throw new NullReferenceException();
-                var movie = UnitOfWork.MovieRepository.Get(id.Value);
+                var movie = UnitOfWork.MovieRepository.GetMovieWithComments(id.Value);
                 if (movie == null)
                     throw new NullReferenceException();
                 UnitOfWork.MovieRepository.Remove(movie);
@@ -252,7 +253,7 @@ namespace TrainingNet.Controllers
             {
                 if (id == null)
                     throw new NullReferenceException();
-                var movie = UnitOfWork.MovieRepository.Get(id.Value);
+                var movie = UnitOfWork.MovieRepository.GetMovieWithComments(id.Value);
                 if (movie == null)
                     throw new NullReferenceException();
                 MovieViewModel movieVM = new MovieViewModel
@@ -273,6 +274,31 @@ namespace TrainingNet.Controllers
             }
         }
         
+        [HttpPost("AddComment")]
+        public IActionResult AddComment(int? id, string commentText)
+        {
+            try 
+            {
+                if (id == null)
+                    throw new NullReferenceException();
+                var movie = UnitOfWork.MovieRepository.GetMovieWithComments(id.Value);
+                if (movie == null)
+                    throw new NullReferenceException();
+                var comment = new Comment
+                {
+                    Text = commentText,
+                    Movie = movie
+                };
+                movie.Comments.Add(comment);
+                UnitOfWork.Complete();
+                return RedirectToAction("Details", "Movie", new { id = id});
+            }
+            catch(NullReferenceException)
+            {
+                return NotFound();
+            }
+        }
+        
         [HttpGet("SendMovieMail")]
         public IActionResult SendMovieMail(int? id)
         {
@@ -280,7 +306,7 @@ namespace TrainingNet.Controllers
             {
                 if (id == null)
                     throw new NullReferenceException();
-                var movie = UnitOfWork.MovieRepository.Get(id.Value);
+                var movie = UnitOfWork.MovieRepository.GetMovieWithComments(id.Value);
                 if (movie == null)
                     throw new NullReferenceException();
                 MovieViewModel movieVM = new MovieViewModel
@@ -308,7 +334,7 @@ namespace TrainingNet.Controllers
             {
                 if (id == null)
                     throw new NullReferenceException();
-                var movie = UnitOfWork.MovieRepository.Get(id.Value);
+                var movie = UnitOfWork.MovieRepository.GetMovieWithComments(id.Value);
                 if (movie == null)
                     throw new NullReferenceException();
                 string body = $@"

@@ -7,6 +7,14 @@
 <partial name="~/Views/Shared/_Details.cshtml" view-data="ViewData" />
 <div class = "form-group">
     <div class = "col-md-10">
-        <a asp-action="Index" asp-controller="Movie" class = "btn btn-default" >@(@Localizer["Return"].Value)</a>
+    <form asp-controller="Movie" asp-action="AddComment" asp-method="post">
+        <p>@(Localizer["TextComment"].Value+" "+Localizer["Movie"].Value)<br><br>
+            <input type="text" maxlength="50" name="commentText">
+            @Html.HiddenFor(model => model.Id)
+            <input type="submit" class="btn btn-default" value=@Localizer["SendComment"].Value />
+            <a asp-action="Index" asp-controller="Movie" class="btn btn-default" >@(@Localizer["Return"].Value)</a>
+        </p>
+    </form>
     </div>
 </div>
+<partial name="~/Views/Shared/_Comments.cshtml" view-data="ViewData" />

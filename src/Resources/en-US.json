@@ -39,5 +39,9 @@
     "TextSend":"Enter email to send",
     "Previous":"Previous",
     "Next":"Next",
-    "All":"All"
+    "All":"All",
+    "TextComment":"Add comment related to",
+    "SendComment":"Send Comment",
+    "Comments":"Comments",
+    "NoComments":"No comments yet. Be the first..."
 }
