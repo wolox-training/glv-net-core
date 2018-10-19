@@ -13,6 +13,6 @@ namespace TrainingNet.Models
         public string Genre { get; set; }
         public decimal Price { get; set; }
         public string Rating { get; set;}
-        public ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }
