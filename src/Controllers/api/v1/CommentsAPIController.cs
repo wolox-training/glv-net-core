@@ -47,13 +47,13 @@ namespace TrainingNet.api.v1.Controllers
         }
 
         [HttpPost("AddComment")]
-        public IActionResult AddComment(int? id, string commentText)
+        public IActionResult AddComment(int? idMovie, string commentText)
         {
             try 
             {
-                if (id == null)
+                if (idMovie == null)
                     throw new NullReferenceException();
-                var movie = UnitOfWork.MovieRepository.GetMovieWitYourComments(id.Value);
+                var movie = UnitOfWork.MovieRepository.GetMovieWitYourComments(idMovie.Value);
                 if (movie == null)
                     throw new NullReferenceException();
                 var comment = new Comment

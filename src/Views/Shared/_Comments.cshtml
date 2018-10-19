@@ -2,7 +2,31 @@
 @using System.Globalization;
 @inject IViewLocalizer Localizer
 @model TrainingNet.Models.Views.MovieViewModel
-
+<script type="text/javascript">
+    $(function () 
+    {
+        $("#AddCommentButton").click(function ()
+        {
+              var textComment = $('#textForm').val();
+              var movieIdComment = $('#movieIdForm').val();
+                $.ajax({  
+                    type: 'POST',  
+                    url: '@Url.Action("AddComment", "CommentsAPI")',  
+                    data: { movieIdComment, textComment },  
+                    success: function (response) {
+                        alert("Thanks for your comment!");
+                    },
+                    error: function (response){  
+                        alert('Sorry: Something Wrong');  
+                    },
+                    complete: function(){
+                        $("#commentsBlock").append(<td>${comment}</td>);
+                        $("#textForm").val('');
+                    }, 
+                });
+        });
+    });
+</script>
 <div class = "form-group">
     <div class = "col-md-10">
         @Html.Label("Comment",Localizer["Comments"].Value, new { @class = "col-md-2 control-label" })
@@ -11,14 +35,12 @@
         {
             <table class="table">
                 <tbody>
+                    @foreach (var item in Model.Comments) 
+                    {
                         <tr>
-                            <td>
-                                <script type="text/javascript">
-                                    var items = @Html.Raw(Json.Encode(Model.Comments));
-                                    for (var i = 0; i < items.length; i++) {
-                                        alert(JSON.stringify(items[i], null, 4));
-                                    }
-                                </script>
+                            <td id=commentsBlock>
+                                
+                                 @Html.DisplayFor(modelItem => item.Text)
                             </td>
                         </tr>
                     }
