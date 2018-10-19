@@ -12,26 +12,19 @@ namespace TrainingNet.Paging
 
         public PaginatedList(IEnumerable<T> items, int count, int pageIndex, int pageSize)
         {
-            PageIndex = pageIndex;
-            TotalPages = (int)Math.Ceiling(count / (double)pageSize);
-
+            this.PageIndex = pageIndex;
+            this.TotalPages = (int)Math.Ceiling(count / (double)pageSize);
             this.AddRange(items);
         }
 
         public bool HasPreviousPage
         {
-            get
-            {
-                return (PageIndex > 1);
-            }
+            get => PageIndex > 1;
         }
 
         public bool HasNextPage
         {
-            get
-            {
-                return (PageIndex < TotalPages);
-            }
+            get => PageIndex < TotalPages;
         }
 
         public static PaginatedList<T> Create(IEnumerable<T> source, int pageIndex, int pageSize)
