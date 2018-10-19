@@ -289,12 +289,7 @@ namespace TrainingNet.Controllers
                 var movie = UnitOfWork.MovieRepository.Get(id.Value);
                 if (movie == null)
                     throw new NullReferenceException();
-                StringBuilder body = new StringBuilder();
-                body.Append(movie.Title.ToString()).Append(Environment.NewLine);
-                body.Append(movie.ReleaseDate.ToString()).Append(Environment.NewLine);
-                body.Append(movie.Genre.ToString()).Append(Environment.NewLine);
-                body.Append(movie.Price.ToString()).Append(Environment.NewLine);
-                body.Append(movie.Rating.ToString()).Append(Environment.NewLine);
+                string body = $"{movie.Title}{Environment.NewLine}{movie.ReleaseDate}{Environment.NewLine}{movie.Genre}{Environment.NewLine}{movie.Price}{Environment.NewLine}{movie.Rating}{Environment.NewLine}";
                 Mailer.Send(emailAddress, movie.Title.ToString(), body.ToString());
                 return RedirectToAction("Index", "Movie");
             }
