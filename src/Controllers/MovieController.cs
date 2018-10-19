@@ -1,19 +1,19 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.Localization;
 using TrainingNet.Models;
 using TrainingNet.Models.Views;
 using TrainingNet.Repositories.Interfaces;
 using TrainingNet.Mail;
-using System.Collections.Generic;
 using TrainingNet.Paging;
 
 namespace TrainingNet.Controllers
 {
-    [Route("[controller]"), Authorize]
+  [Route("[controller]"), Authorize]
     public class MovieController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

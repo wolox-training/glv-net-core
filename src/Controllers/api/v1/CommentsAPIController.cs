@@ -1,14 +1,7 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using TrainingNet.Mail;
 using TrainingNet.Models;
-using TrainingNet.Models.Views;
-using TrainingNet.Paging;
 using TrainingNet.Repositories.Interfaces;
 
 namespace TrainingNet.api.v1.Controllers
