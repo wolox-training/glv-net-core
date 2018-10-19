@@ -8,20 +8,20 @@ namespace TrainingNet.Models.Views
     {
         public int Id { get; set; }
 
-        [Display(Name = "Titulo")]
+        [Required, Display(Name = "Titulo"), StringLength(60, MinimumLength = 3)]
         public string Title { get; set; }
         
-        [Display(Name = "Release Date"), DataType(DataType.Date)]
+        [Display(Name = "Release Date"), DataType(DataType.Date), Range(typeof(DateTime), "1/1/186", "1/1/2020")]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime ReleaseDate { get; set; }
         
-        [Display(Name = "Genero")]
+        [Required, Display(Name = "Genero"),RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$"), StringLength(30)]
         public string Genre { get; set; }
         
-        [Display(Name = "Precio"), Column(TypeName = "decimal(18, 2)")]
+        [Required, Display(Name = "Precio"), DataType(DataType.Currency), Column(TypeName = "decimal(18, 2)")]
         public decimal Price { get; set; }
 
-        [Display(Name = "Calificación")]
+        [Required, Display(Name = "Calificación"), RegularExpression(@"^[0-9]+[0-9""'\s-]*$"), StringLength(2)]
         public string Rating { get; set; }
   }
 }
