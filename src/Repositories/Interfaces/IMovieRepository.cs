@@ -5,6 +5,6 @@ namespace TrainingNet.Repositories.Interfaces
 {
     public interface IMovieRepository : IRepository<Movie>
     {
-        Movie GetMovieWitYourComments( int id);
+        Movie GetMovieWithComments(int id);
     }  
 }
