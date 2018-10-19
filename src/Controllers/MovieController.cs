@@ -8,6 +8,7 @@ using TrainingNet.Models;
 using TrainingNet.Models.Views;
 using TrainingNet.Repositories.Interfaces;
 using TrainingNet.Mail;
+using System.Collections.Generic;
 
 namespace TrainingNet.Controllers
 {
@@ -29,18 +30,60 @@ namespace TrainingNet.Controllers
             get { return this._unitOfWork; }
         }
 
-        [HttpGet("")]
-        public IActionResult Index(string searchString, string movieGenre)
+        [HttpGet(""), Authorize]
+        public IActionResult Index(string searchString, string movieGenre, string sortOrder)
         {
             try
             {
+                ViewData["TitleSort"] = String.IsNullOrEmpty(sortOrder) ? "title_desc" : "";
+                ViewData["DateSort"] = sortOrder == "date" ? "date_desc" : "date";  
+                ViewData["GenreSort"] = sortOrder == "genre" ? "genre_desc" : "genre";
+                ViewData["PriceSort"] = sortOrder == "price" ? "price_desc" : "price";
+                ViewData["RatingSort"] = sortOrder == "rating" ? "rating_desc" : "rating";
                 var movies = UnitOfWork.MovieRepository.GetAll();
-                var genreQuery = movies.OrderBy(m => m.Genre).Select(m => m.Genre).Distinct().ToList();
+                var movieGenreVM = new MovieGenreViewModel();
                 if (movies == null)
                     throw new NullReferenceException();
+                var genreQuery = movies.OrderBy(m => m.Genre).Select(m => m.Genre).Distinct().ToList();
                 if (!String.IsNullOrEmpty(searchString))
+                    movies = movies.Where(m => m.Title.Contains(searchString));
+                if (!String.IsNullOrEmpty(movieGenre))
+                    movies = movies.Where(m => m.Genre == movieGenre);
+                switch (sortOrder)
                 {
-                    var moviesVM = movies.Select(m => new MovieViewModel
+                    case "title_desc":
+                        movies = movies.OrderByDescending(m => m.Title.ToLower());
+                        break;
+                    case "date":
+                        movies = movies.OrderBy(m => m.ReleaseDate);
+                        break;
+                    case "date_desc":
+                        movies = movies.OrderByDescending(m => m.ReleaseDate);
+                        break;
+                    case "genre":
+                        movies = movies.OrderBy(m => m.Genre);
+                        break;
+                    case "genre_desc":
+                        movies = movies.OrderByDescending(m => m.Genre);
+                        break;
+                    case "price":
+                        movies = movies.OrderBy(m => m.Price);
+                        break;
+                    case "price_desc":
+                        movies = movies.OrderByDescending(m => m.Price);
+                        break;
+                    case "rating":
+                        movies = movies.OrderBy(m => m.Rating);
+                        break;
+                    case "rating_desc":
+                        movies = movies.OrderByDescending(m => m.Rating);
+                        break;
+                    default:
+                        movies = movies.OrderBy(m => m.Title.ToLower());
+                        break;
+                }
+                movieGenreVM.GenresList = new SelectList(genreQuery.Distinct());
+                var moviesVM = movies.Select(m => new MovieViewModel
                     {
                         Id = m.Id,
                         Title= m.Title,
@@ -48,52 +91,9 @@ namespace TrainingNet.Controllers
                         Genre = m.Genre,
                         Price = m.Price,
                         Rating = m.Rating,
-                    })
-                    .Where(m => m.Title.Contains(searchString))
-                    .ToList();
-                        var movieGenreVM = new MovieGenreViewModel();
-                        movieGenreVM.GenresList = new SelectList(genreQuery.Distinct());
-                        movieGenreVM.MoviesList = moviesVM.ToList();
-                    return View(movieGenreVM);
-                }
-                else
-                {
-                    if (!String.IsNullOrEmpty(movieGenre))
-                    {
-                        var moviesVM = movies.Select(m => new MovieViewModel
-                        {
-                            Id = m.Id,
-                            Title= m.Title,
-                            ReleaseDate = m.ReleaseDate,
-                            Genre = m.Genre,
-                            Price = m.Price,
-                            Rating = m.Rating,
-                        })
-                        .Where(m => m.Genre == movieGenre)
-                        .ToList();
-                        var movieGenreVM = new MovieGenreViewModel();
-                        movieGenreVM.GenresList = new SelectList(genreQuery.Distinct());
-                        movieGenreVM.MoviesList = moviesVM.ToList();
-
-                        return View(movieGenreVM);
-                    }
-                    else
-                    {
-                        var moviesVM = movies.Select(m => new MovieViewModel
-                        {
-                            Id = m.Id,
-                            Title = m.Title,
-                            ReleaseDate = m.ReleaseDate,
-                            Genre = m.Genre,
-                            Price = m.Price,
-                            Rating = m.Rating,
-                        }).ToList();
-                        var movieGenreVM = new MovieGenreViewModel();
-                        movieGenreVM.GenresList = new SelectList(genreQuery.Distinct());
-                        movieGenreVM.MoviesList = moviesVM.ToList();
-                        return View(movieGenreVM);
-                    }
-                }
+                    });
+                movieGenreVM.MoviesList = moviesVM.ToList();
+                return View(movieGenreVM);
             }
             catch (NullReferenceException)
             {
@@ -154,7 +154,7 @@ namespace TrainingNet.Controllers
             }                
         }
 
-        [HttpPost("Edit/{id}"), ValidateAntiForgeryToken]
+        [HttpPost("Edit/{id}")]
         public IActionResult Edit(MovieViewModel movieVM)
         {
             try 
