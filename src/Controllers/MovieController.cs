@@ -1,14 +1,12 @@
-using Microsoft.AspNetCore.Mvc;
-using TrainingNet.Repositories.Interfaces;
-using TrainingNet.Models.Views;
-using TrainingNet.Models;
 using System;
 using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System.Net.Mail;
-using System.Net;
-using System.Text;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Localization;
+using TrainingNet.Models;
+using TrainingNet.Models.Views;
+using TrainingNet.Repositories.Interfaces;
 using TrainingNet.Mail;
 
 namespace TrainingNet.Controllers
@@ -17,10 +15,13 @@ namespace TrainingNet.Controllers
     public class MovieController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
+
+        private readonly IHtmlLocalizer<MovieController> _localizer;
         
-        public MovieController(IUnitOfWork unitOfWork)
+        public MovieController(IUnitOfWork unitOfWork, IHtmlLocalizer<MovieController> localizer)
         {
             this._unitOfWork = unitOfWork;
+            this._localizer = localizer;
         }
 
         private IUnitOfWork UnitOfWork
@@ -289,8 +290,13 @@ namespace TrainingNet.Controllers
                 var movie = UnitOfWork.MovieRepository.Get(id.Value);
                 if (movie == null)
                     throw new NullReferenceException();
-                string body = $"{movie.Title}{Environment.NewLine}{movie.ReleaseDate}{Environment.NewLine}{movie.Genre}{Environment.NewLine}{movie.Price}{Environment.NewLine}{movie.Rating}{Environment.NewLine}";
-                Mailer.Send(emailAddress, movie.Title.ToString(), body.ToString());
+                string body = $@"
+                {_localizer["Movie"].Value}: {movie.Title}{Environment.NewLine}
+                {_localizer["ReleaseDate"].Value}: {movie.ReleaseDate}{Environment.NewLine}
+                {_localizer["Genre"].Value}: {movie.Genre}{Environment.NewLine}
+                {_localizer["Price"].Value}: {movie.Price}{Environment.NewLine}
+                {_localizer["Rating"].Value}: {movie.Rating}{Environment.NewLine}";
+                Mailer.Send(emailAddress, movie.Title.ToString(), body);
                 return RedirectToAction("Index", "Movie");
             }
             catch(NullReferenceException)
