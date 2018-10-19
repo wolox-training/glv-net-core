@@ -43,19 +43,12 @@ namespace TrainingNet.Controllers
                 var movies = UnitOfWork.MovieRepository.GetAll();
                 var movieGenreVM = new MovieGenreViewModel();
                 if (movies == null)
-                {
                     throw new NullReferenceException();
-                }
                 var genreQuery = movies.OrderBy(m => m.Genre).Select(m => m.Genre).Distinct().ToList();
-
                 if (!String.IsNullOrEmpty(searchString))
-                {
                     movies = movies.Where(m => m.Title.Contains(searchString));
-                }
                 if (!String.IsNullOrEmpty(movieGenre))
-                {
                     movies = movies.Where(m => m.Genre == movieGenre);
-                }
                 switch (sortOrder)
                 {
                     case "title_desc":
