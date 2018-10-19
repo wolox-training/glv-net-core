@@ -9,6 +9,7 @@ using TrainingNet.Models.Views;
 using TrainingNet.Repositories.Interfaces;
 using TrainingNet.Mail;
 using System.Collections.Generic;
+using TrainingNet.Paging;
 
 namespace TrainingNet.Controllers
 {
@@ -18,6 +19,11 @@ namespace TrainingNet.Controllers
         private readonly IUnitOfWork _unitOfWork;
 
         private readonly IHtmlLocalizer<MovieController> _localizer;
+
+        private IHtmlLocalizer<MovieController> Localizer
+        {
+            get => this._localizer;
+        }
         
         public MovieController(IUnitOfWork unitOfWork, IHtmlLocalizer<MovieController> localizer)
         {
@@ -31,10 +37,16 @@ namespace TrainingNet.Controllers
         }
 
         [HttpGet(""), Authorize]
-        public IActionResult Index(string searchString, string movieGenre, string sortOrder)
-        {
+        public IActionResult Index(string searchString, string currentGenre, string sortOrder, string currentFilter, int? page)
+        {  
             try
             {
+                if (searchString != null)
+                    page = 1;
+                else
+                    searchString = currentFilter;
+                ViewData["CurrentFilter"] = searchString;
+                ViewData["CurrentSort"] = sortOrder;
                 ViewData["TitleSort"] = String.IsNullOrEmpty(sortOrder) ? "title_desc" : "";
                 ViewData["DateSort"] = sortOrder == "date" ? "date_desc" : "date";  
                 ViewData["GenreSort"] = sortOrder == "genre" ? "genre_desc" : "genre";
@@ -47,8 +59,8 @@ namespace TrainingNet.Controllers
                 var genreQuery = movies.OrderBy(m => m.Genre).Select(m => m.Genre).Distinct().ToList();
                 if (!String.IsNullOrEmpty(searchString))
                     movies = movies.Where(m => m.Title.Contains(searchString));
-                if (!String.IsNullOrEmpty(movieGenre))
-                    movies = movies.Where(m => m.Genre == movieGenre);
+                if (!String.IsNullOrEmpty(currentGenre))
+                    movies = movies.Where(m => m.Genre == currentGenre);
                 switch (sortOrder)
                 {
                     case "title_desc":
@@ -92,7 +104,9 @@ namespace TrainingNet.Controllers
                         Price = m.Price,
                         Rating = m.Rating,
                     });
-                movieGenreVM.MoviesList = moviesVM.ToList();
+                int pageSize = 3;
+                movieGenreVM.CurrentGenre = currentGenre;
+                movieGenreVM.MoviesList = PaginatedList<MovieViewModel>.Create(moviesVM.ToList(), page ?? 1, pageSize);
                 return View(movieGenreVM);
             }
             catch (NullReferenceException)
@@ -291,11 +305,11 @@ namespace TrainingNet.Controllers
                 if (movie == null)
                     throw new NullReferenceException();
                 string body = $@"
-                {_localizer["Movie"].Value}: {movie.Title}{Environment.NewLine}
-                {_localizer["ReleaseDate"].Value}: {movie.ReleaseDate}{Environment.NewLine}
-                {_localizer["Genre"].Value}: {movie.Genre}{Environment.NewLine}
-                {_localizer["Price"].Value}: {movie.Price}{Environment.NewLine}
-                {_localizer["Rating"].Value}: {movie.Rating}{Environment.NewLine}";
+                {Localizer["Movie"].Value}: {movie.Title}{Environment.NewLine}
+                {Localizer["ReleaseDate"].Value}: {movie.ReleaseDate}{Environment.NewLine}
+                {Localizer["Genre"].Value}: {movie.Genre}{Environment.NewLine}
+                {Localizer["Price"].Value}: {movie.Price}{Environment.NewLine}
+                {Localizer["Rating"].Value}: {movie.Rating}{Environment.NewLine}";
                 Mailer.Send(emailAddress, movie.Title.ToString(), body);
                 return RedirectToAction("Index", "Movie");
             }

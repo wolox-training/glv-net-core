@@ -36,5 +36,8 @@
     "Filter":"Filtrado",
     "Rating":"Calificacion",
     "SendMail":"Enviar correo",
-    "TextSend":"Ingresar correo electronico para enviar"
+    "TextSend":"Ingresar correo electronico para enviar",
+    "Previous":"Anterior",
+    "Next":"Siguiente",
+    "All":"Todos"
 }

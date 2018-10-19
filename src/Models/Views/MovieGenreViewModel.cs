@@ -1,13 +1,14 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 using TrainingNet.Models.Views;
+using TrainingNet.Paging;
 
 namespace TrainingNet.Models.Views
 {
   public class MovieGenreViewModel
     {
-        public List<MovieViewModel> MoviesList;
+        public PaginatedList<MovieViewModel> MoviesList;
         public SelectList GenresList;
-        public string MovieGenre { get; set; }
+        public string CurrentGenre { get; set; }
     }
 }
