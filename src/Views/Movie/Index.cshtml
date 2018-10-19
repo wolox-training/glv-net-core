@@ -44,6 +44,9 @@
             <th>
                 <a asp-controller="Movie" asp-action="Index" asp-route-sortOrder="@ViewData["RatingSort"]">@Html.DisplayNameFor(m => m.MoviesList[0].Rating)</a>
             </th>
+            <th>
+                <a asp-controller="Movie" asp-action="Index" asp-route-sortOrder="@ViewData["RatingSort"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">@Html.DisplayNameFor(m => m.MoviesList[0].Rating)</a>
+            </th>
             <th>@(Localizer["Options"].Value)</th>
         </tr>
     </thead>

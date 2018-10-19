@@ -16,6 +16,9 @@ namespace TrainingNet.Repositories.Database
             ApplicationUserRepository = new ApplicationUserRepository(_context);
         }
         public IMovieRepository MovieRepository { get; private set; }
+
+        public ICommentRepository CommentRepository { get; private set; }
+        
         public IApplicationUserRepository ApplicationUserRepository { get; private set; }
 
         public int Complete()

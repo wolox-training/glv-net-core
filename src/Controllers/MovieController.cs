@@ -103,6 +103,7 @@ namespace TrainingNet.Controllers
                         Genre = m.Genre,
                         Price = m.Price,
                         Rating = m.Rating,
+                        Comments = m.Comments                        
                     });
                 int pageSize = 3;
                 movieGenreVM.CurrentGenre = currentGenre;
@@ -133,6 +134,7 @@ namespace TrainingNet.Controllers
                     Genre = movieVM.Genre,
                     Price = movieVM.Price,
                     Rating = movieVM.Rating,
+                    Comments = movieVM.Comments
                 };
                 UnitOfWork.MovieRepository.Add(movie);
                 UnitOfWork.Complete();
@@ -159,6 +161,7 @@ namespace TrainingNet.Controllers
                     Genre = movie.Genre,
                     Price = movie.Price,
                     Rating = movie.Rating,
+                    Comments = movie.Comments
                 };
                 return View(movieVM);
             }
@@ -183,8 +186,9 @@ namespace TrainingNet.Controllers
                     Genre = movieVM.Genre,
                     Price = movieVM.Price,
                     Rating = movieVM.Rating,
+                    Comments = movieVM.Comments
                 };
-                UnitOfWork.MovieRepository.Update(movie);
+               UnitOfWork.MovieRepository.Update(movie);
                 UnitOfWork.Complete();
                 return RedirectToAction("Index", "Movie");
             }
@@ -212,6 +216,7 @@ namespace TrainingNet.Controllers
                     Genre = movie.Genre,
                     Price = movie.Price,
                     Rating = movie.Rating,
+                    Comments = movie.Comments
                 };
                 return View(movieVM);
             }
@@ -258,6 +263,7 @@ namespace TrainingNet.Controllers
                     Genre = movie.Genre,
                     Price = movie.Price,
                     Rating = movie.Rating,
+                    Comments = movie.Comments
                 };
                 return View(movieVM);
             }
@@ -285,6 +291,7 @@ namespace TrainingNet.Controllers
                     Genre = movie.Genre,
                     Price = movie.Price,
                     Rating = movie.Rating,
+                    Comments = movie.Comments
                 };
                 return View(movieVM);
             }
