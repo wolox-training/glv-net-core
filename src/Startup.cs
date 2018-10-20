@@ -68,9 +68,8 @@ namespace TrainingNet
             });
 
             services.AddJsonLocalization(options => options.ResourcesPath = "Resources");
-            services.AddMvc().AddViewLocalization().AddJsonOptions( opt =>
+            services.AddMvc().AddViewLocalization().AddJsonOptions(opt =>
             opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
-            
             CultureInfo.CurrentCulture = new CultureInfo("es-ES");
             CultureInfo.CurrentUICulture = new CultureInfo("es-ES");
             services.AddScoped<IUnitOfWork, UnitOfWork>();
