@@ -59,7 +59,7 @@ namespace TrainingNet.api.v1.Controllers
                 movie.Comments.Add(comment);
                 UnitOfWork.MovieRepository.Update(movie);
                 UnitOfWork.Complete();
-                return Json(new {comment=comment.Text.ToString()});
+                return Json(new { comment=comment.Text.ToString() });
             }
             catch(NullReferenceException e)
             {

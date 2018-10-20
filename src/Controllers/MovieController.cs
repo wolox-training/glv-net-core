@@ -225,7 +225,7 @@ namespace TrainingNet.Controllers
                 return NotFound();
             }
         }
-        
+
         [HttpPost("Delete"),ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int? id)
         {
