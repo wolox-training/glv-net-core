@@ -28,7 +28,7 @@ namespace TrainingNet.api.v1.Controllers
             {
                 if (id == null)
                     throw new NullReferenceException();
-                var movie = UnitOfWork.MovieRepository.GetMovieWitYourComments(id.Value);
+                var movie = UnitOfWork.MovieRepository.GetMovieWithComments(id.Value);
                 if (movie == null)
                     throw new NullReferenceException();
                 return Json(movie.Comments.ToList());
@@ -48,7 +48,7 @@ namespace TrainingNet.api.v1.Controllers
                     throw new NullReferenceException("Movie Error");
                 if (string.IsNullOrEmpty(commentText))
                     throw new NullReferenceException("Comment not found");
-                var movie = UnitOfWork.MovieRepository.GetMovieWitYourComments(idMovie.Value);
+                var movie = UnitOfWork.MovieRepository.GetMovieWithComments(idMovie.Value);
                 if (movie == null)
                     throw new NullReferenceException();
                 var comment = new Comment
