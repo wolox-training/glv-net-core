@@ -10,11 +10,11 @@
         @if (Model.Comments.Any())
         {
             <table class="table">
-                <tbody>
+                <tbody id=commentsBlock>
                     @foreach (var item in Model.Comments) 
                     {
                         <tr>
-                            <td>
+                            <td >
                                 @Html.DisplayFor(modelItem => item.Text)
                             </td>
                         </tr>
